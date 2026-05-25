@@ -38,13 +38,19 @@ const products = [
   },
   {
     name: "Peanut butter",
-    price: 35,
+    price: 25,
     image: "images/peanutpaste.png"
   },
   {
     name: "Eggs",
-    price: 35,
+    price: 55,
     image: "images/eggs.png"
+  },
+  
+  {
+    name: "avocadoes",
+    price: 50,
+    image: "images/avocadoes.png"
   }
 
 ];
