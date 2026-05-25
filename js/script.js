@@ -8,71 +8,45 @@ const scriptURL =
 const products = [
 
   {
+    id: 1,
     name: "Fresh Tomatoes",
-    price: 25,
+    pricePerKg: 25,
     image: "images/tomatoes.png"
   },
 
   {
-    name: "Organic Carrots",
-    price: 18,
+    id: 2,
+    name: "Carrots",
+    pricePerKg: 18,
     image: "images/carrots.png"
-  },
-  {
-    name: "Beetroots",
-    price: 20,
-    image: "images/Beetroots.png"
   },
 
   {
+    id: 3,
     name: "Fresh Pepper",
-    price: 20,
+    pricePerKg: 20,
     image: "images/pepper.png"
   },
 
   {
-    name: "Fresh Lettuce",
-    price: 15,
+    id: 4,
+    name: "Lettuce",
+    pricePerKg: 15,
     image: "images/lettuce.png"
   },
 
   {
+    id: 5,
     name: "Watermelon",
-    price: 35,
+    pricePerKg: 35,
     image: "images/watermelon.png"
-  },
-  {
-    name: "Peanut butter",
-    price: 25,
-    image: "images/peanutpaste.png"
-  },
-  {
-    name: "Eggs",
-    price: 55,
-    image: "images/eggs.png"
-  },
-  
-  {
-    name: "avocadoes",
-    price: 25,
-    image: "images/avocados.png"
-  },
-  {
-    name: "Garden Eggs",
-    price: 50,
-    image: "images/gardenegg.png"
-  },
-    {
-    name: "Okro",
-    price: 10,
-    image: "images/okro.png"
   }
 
 ];
 
 // CART
 
-const cart = [];
+let cart = [];
 
 // ELEMENTS
 
@@ -92,14 +66,17 @@ const message =
 
 function displayProducts() {
 
+  productsContainer.innerHTML = "";
+
   products.forEach((product) => {
 
-    const card = document.createElement("div");
+    const card =
+      document.createElement("div");
 
     card.classList.add("card");
 
     card.innerHTML = `
-    
+
       <img src="${product.image}" alt="${product.name}" />
 
       <div class="card-content">
@@ -107,24 +84,24 @@ function displayProducts() {
         <h3>${product.name}</h3>
 
         <p class="price">
-          GHS ${product.price}
+          GHS ${product.pricePerKg} / Kg
         </p>
 
-        <button>
+        <input
+          type="number"
+          min="1"
+          value="1"
+          id="kg-${product.id}"
+          class="kg-input"
+        />
+
+        <button onclick="addToCart(${product.id})">
           Add To Cart
         </button>
 
       </div>
-    
+
     `;
-
-    const button =
-      card.querySelector("button");
-
-    button.addEventListener(
-      "click",
-      () => addToCart(product)
-    );
 
     productsContainer.appendChild(card);
 
@@ -134,9 +111,42 @@ function displayProducts() {
 
 // ADD TO CART
 
-function addToCart(product) {
+function addToCart(productId) {
 
-  cart.push(product);
+  const product =
+    products.find(
+      item => item.id === productId
+    );
+
+  const kg =
+    parseFloat(
+      document.getElementById(
+        `kg-${productId}`
+      ).value
+    );
+
+  const existingItem =
+    cart.find(
+      item => item.id === productId
+    );
+
+  if (existingItem) {
+
+    existingItem.kg += kg;
+
+  }
+
+  else {
+
+    cart.push({
+
+      ...product,
+
+      kg
+
+    });
+
+  }
 
   updateCart();
 
@@ -150,9 +160,12 @@ function updateCart() {
 
   let total = 0;
 
-  cart.forEach((item) => {
+  cart.forEach((item, index) => {
 
-    total += item.price;
+    const itemTotal =
+      item.pricePerKg * item.kg;
+
+    total += itemTotal;
 
     const div =
       document.createElement("div");
@@ -160,11 +173,30 @@ function updateCart() {
     div.classList.add("cart-item");
 
     div.innerHTML = `
-    
-      <span>${item.name}</span>
 
-      <span>GHS ${item.price}</span>
-    
+      <div>
+
+        <strong>${item.name}</strong>
+
+        <p>
+          ${item.kg} Kg ×
+          GHS ${item.pricePerKg}
+        </p>
+
+      </div>
+
+      <div class="cart-actions">
+
+        <strong>
+          GHS ${itemTotal.toFixed(2)}
+        </strong>
+
+        <button onclick="removeItem(${index})">
+          Remove
+        </button>
+
+      </div>
+
     `;
 
     cartItems.appendChild(div);
@@ -172,7 +204,17 @@ function updateCart() {
   });
 
   totalElement.innerText =
-    `Total: GHS ${total}`;
+    `Total: GHS ${total.toFixed(2)}`;
+
+}
+
+// REMOVE ITEM
+
+function removeItem(index) {
+
+  cart.splice(index, 1);
+
+  updateCart();
 
 }
 
@@ -195,8 +237,6 @@ async function submitOrder() {
       "customerLocation"
     ).value;
 
-  // VALIDATION
-
   if (
     !name ||
     !phone ||
@@ -205,23 +245,31 @@ async function submitOrder() {
   ) {
 
     alert(
-      "Please complete all fields and add products."
+      "Please complete all fields."
     );
 
     return;
 
   }
 
-  // ORDER DATA
-
   const items =
-    cart.map(item => item.name)
-    .join(", ");
+    cart.map(item =>
+
+      `${item.name}
+      (${item.kg}Kg)`
+
+    ).join(", ");
 
   const total =
     cart.reduce(
-      (sum, item) => sum + item.price,
+
+      (sum, item) =>
+
+        sum +
+        (item.pricePerKg * item.kg),
+
       0
+
     );
 
   const orderData = {
@@ -247,13 +295,9 @@ async function submitOrder() {
     message.innerText =
       "Order placed successfully!";
 
-    // CLEAR CART
-
-    cart.length = 0;
+    cart = [];
 
     updateCart();
-
-    // CLEAR INPUTS
 
     document.getElementById(
       "customerName"
@@ -271,13 +315,19 @@ async function submitOrder() {
 
   catch (error) {
 
-    alert("Failed to submit order.");
+    alert(
+      "Failed to submit order."
+    );
 
   }
 
 }
 
-// BUTTON EVENT
+// INITIALIZE
+
+displayProducts();
+
+// ORDER BUTTON
 
 document
   .getElementById("orderBtn")
@@ -285,7 +335,3 @@ document
     "click",
     submitOrder
   );
-
-// INITIALIZE
-
-displayProducts();
