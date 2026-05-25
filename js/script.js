@@ -10,7 +10,7 @@ const products = [
   {
     name: "Fresh Tomatoes",
     price: 25,
-    image: "images/tomatoes.jpg"
+    image: "images/tomatoes.png"
   },
 
   {
