@@ -56,7 +56,7 @@ const products = [
     id: 8,
     name: "Peanut Butter",
     pricePerKg: 15,
-    image: "images/peanutbutter.png"
+    image: "images/peanutpaste.png"
   },
   {
     id: 9,
@@ -69,6 +69,12 @@ const products = [
     name: "Garden Egg",
     pricePerKg: 15,
     image: "images/gardenegg.png"
+  },
+  {
+    id: 11,
+    name: "Egg",
+    pricePerKg: 15,
+    image: "images/eggs.png"
   },
 
   {
