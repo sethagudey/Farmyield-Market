@@ -22,7 +22,7 @@ const products = [
   {
     name: "Fresh Pepper",
     price: 20,
-    image: "images/pepper.jpg"
+    image: "images/pepper.png"
   },
 
   {
@@ -34,7 +34,7 @@ const products = [
   {
     name: "Watermelon",
     price: 35,
-    image: "images/watermelon.jpg"
+    image: "images/watermelon.png"
   },
   {
     name: "Peanut butter",
@@ -51,6 +51,11 @@ const products = [
     name: "avocadoes",
     price: 50,
     image: "images/avocados.png"
+  },
+  {
+    name: "Garden Eggs",
+    price: 50,
+    image: "images/gardeneggs.png"
   }
 
 ];
