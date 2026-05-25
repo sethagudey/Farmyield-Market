@@ -50,7 +50,7 @@ const products = [
   {
     name: "avocadoes",
     price: 50,
-    image: "images/avocadoes.png"
+    image: "images/avocados.png"
   }
 
 ];
