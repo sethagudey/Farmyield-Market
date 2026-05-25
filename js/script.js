@@ -34,6 +34,30 @@ const products = [
     pricePerKg: 15,
     image: "images/lettuce.png"
   },
+  {
+    id: 4,
+    name: "Beetroots",
+    pricePerKg: 15,
+    image: "images/Beetroots.png"
+  },
+  {
+    id: 4,
+    name: "Avocados",
+    pricePerKg: 15,
+    image: "images/avocados.png"
+  },
+  {
+    id: 4,
+    name: "Okro",
+    pricePerKg: 15,
+    image: "images/okro.png"
+  },
+  {
+    id: 4,
+    name: "Peanut Butter",
+    pricePerKg: 15,
+    image: "images/peanutbutter.png"
+  },
 
   {
     id: 5,
