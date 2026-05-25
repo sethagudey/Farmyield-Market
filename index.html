@@ -1,46 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>FarmFresh Marketplace</title>
 
-<link rel="stylesheet" href="css/style.css"></head>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
 
 <body>
 
-  <header>
+  <!-- HEADER -->
+
+  <header class="hero">
+
     <h1>FarmFresh Marketplace</h1>
-    <p>Fresh farm produce directly from local farmers</p>
+
+    <p>
+      Fresh farm produce directly from local farmers
+    </p>
+
   </header>
+
+  <!-- PRODUCTS -->
 
   <main class="container">
 
-    <!-- Products -->
     <section class="products" id="products"></section>
 
-    <!-- Cart -->
-    <section class="cart-section">
+    <!-- CART -->
+
+    <section class="cart">
+
       <h2>Your Cart</h2>
 
-      <div id="cart-items"></div>
+      <div id="cartItems"></div>
 
       <h3 id="total">Total: GHS 0</h3>
 
-      <div class="checkout-form">
-        <input type="text" id="name" placeholder="Your Name" />
-        <input type="text" id="phone" placeholder="Phone Number" />
-        <input type="text" id="location" placeholder="Delivery Location" />
+      <!-- CHECKOUT FORM -->
 
-        <button onclick="submitOrder()">
+      <div class="checkout">
+
+        <input
+          type="text"
+          id="customerName"
+          placeholder="Your Name"
+        />
+
+        <input
+          type="text"
+          id="customerPhone"
+          placeholder="Phone Number"
+        />
+
+        <input
+          type="text"
+          id="customerLocation"
+          placeholder="Delivery Location"
+        />
+
+        <button id="orderBtn">
           Place Order
         </button>
+
       </div>
 
-      <p id="success-message"></p>
+      <p id="message"></p>
+
     </section>
 
   </main>
-<script src="js/script.js"></script>
+
+  <script src="js/script.js"></script>
+
 </body>
+
 </html>
