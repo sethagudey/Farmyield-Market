@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmFresh Marketplace</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <header>
+    <h1>FarmFresh Marketplace</h1>
+    <p>Fresh farm produce directly from local farmers</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Products -->
+    <section class="products" id="products"></section>
+
+    <!-- Cart -->
+    <section class="cart-section">
+      <h2>Your Cart</h2>
+
+      <div id="cart-items"></div>
+
+      <h3 id="total">Total: GHS 0</h3>
+
+      <div class="checkout-form">
+        <input type="text" id="name" placeholder="Your Name" />
+        <input type="text" id="phone" placeholder="Phone Number" />
+        <input type="text" id="location" placeholder="Delivery Location" />
+
+        <button onclick="submitOrder()">
+          Place Order
+        </button>
+      </div>
+
+      <p id="success-message"></p>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
