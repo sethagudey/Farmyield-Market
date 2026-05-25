@@ -163,3 +163,40 @@ body {
   }
 
 }
+.kg-input {
+
+  width: 100%;
+
+  padding: 12px;
+
+  margin-bottom: 12px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 8px;
+
+}
+
+.cart-actions {
+
+  text-align: right;
+
+}
+
+.cart-actions button {
+
+  margin-top: 8px;
+
+  background: red;
+
+  color: white;
+
+  border: none;
+
+  padding: 6px 10px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+}
