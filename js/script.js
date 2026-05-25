@@ -35,32 +35,44 @@ const products = [
     image: "images/lettuce.png"
   },
   {
-    id: 4,
+    id: 5,
     name: "Beetroots",
     pricePerKg: 15,
     image: "images/Beetroots.png"
   },
   {
-    id: 4,
+    id: 6,
     name: "Avocados",
     pricePerKg: 15,
     image: "images/avocados.png"
   },
   {
-    id: 4,
+    id: 7,
     name: "Okro",
     pricePerKg: 15,
     image: "images/okro.png"
   },
   {
-    id: 4,
+    id: 8,
     name: "Peanut Butter",
     pricePerKg: 15,
     image: "images/peanutbutter.png"
   },
+  {
+    id: 9,
+    name: "Plantain",
+    pricePerKg: 15,
+    image: "images/plantain.png"
+  },
+  {
+    id: 10,
+    name: "Garden Egg",
+    pricePerKg: 15,
+    image: "images/gardenegg.png"
+  },
 
   {
-    id: 5,
+    id: 11,
     name: "Watermelon",
     pricePerKg: 35,
     image: "images/watermelon.png"
