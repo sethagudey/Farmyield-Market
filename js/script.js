@@ -1,98 +1,119 @@
-const scriptURL = "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
+// GOOGLE APPS SCRIPT URL
+
+const scriptURL =
+  "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
+
+// PRODUCTS
 
 const products = [
+
   {
     name: "Fresh Tomatoes",
     price: 25,
-    image:
-      "https://images.unsplash.com/photo-1546470427-e5f5e6d4b7d1?q=80&w=1200&auto=format&fit=crop",
+    image: "images/tomatoes.jpg"
   },
 
   {
     name: "Organic Carrots",
     price: 18,
-    image:
-      "https://images.unsplash.com/photo-1447175008436-170170753d52?q=80&w=1200&auto=format&fit=crop",
+    image: "images/carrots.jpg"
   },
 
   {
     name: "Fresh Pepper",
     price: 20,
-    image:
-      "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?q=80&w=1200&auto=format&fit=crop",
-  },
-
-  {
-    name: "Garden Eggs",
-    price: 15,
-    image:
-      "https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=1200&auto=format&fit=crop",
+    image: "images/pepper.jpg"
   },
 
   {
     name: "Fresh Lettuce",
-    price: 12,
-    image:
-      "https://images.unsplash.com/photo-1622205313162-be1d5712a43c?q=80&w=1200&auto=format&fit=crop",
+    price: 15,
+    image: "images/lettuce.jpg"
   },
 
   {
     name: "Watermelon",
     price: 35,
-    image:
-      "https://images.unsplash.com/photo-1563114773-84221bd62daa?q=80&w=1200&auto=format&fit=crop",
-  },
+    image: "images/watermelon.jpg"
+  }
+
 ];
+
+// CART
 
 const cart = [];
 
-const productsContainer = document.getElementById("products");
-const cartItems = document.getElementById("cart-items");
-const totalElement = document.getElementById("total");
+// ELEMENTS
 
-/* DISPLAY PRODUCTS */
+const productsContainer =
+  document.getElementById("products");
 
-function renderProducts() {
+const cartItems =
+  document.getElementById("cartItems");
+
+const totalElement =
+  document.getElementById("total");
+
+const message =
+  document.getElementById("message");
+
+// DISPLAY PRODUCTS
+
+function displayProducts() {
 
   products.forEach((product) => {
 
     const card = document.createElement("div");
-    card.className = "card";
+
+    card.classList.add("card");
 
     card.innerHTML = `
     
       <img src="${product.image}" alt="${product.name}" />
 
       <div class="card-content">
+
         <h3>${product.name}</h3>
 
-        <p class="price">GHS ${product.price}</p>
+        <p class="price">
+          GHS ${product.price}
+        </p>
 
-        <button onclick='addToCart(${JSON.stringify(product)})'>
+        <button>
           Add To Cart
         </button>
+
       </div>
     
     `;
 
+    const button =
+      card.querySelector("button");
+
+    button.addEventListener(
+      "click",
+      () => addToCart(product)
+    );
+
     productsContainer.appendChild(card);
+
   });
 
 }
 
-/* ADD TO CART */
+// ADD TO CART
 
 function addToCart(product) {
 
   cart.push(product);
 
-  renderCart();
+  updateCart();
 
 }
 
-/* DISPLAY CART */
+// UPDATE CART
 
-function renderCart() {
+function updateCart() {
 
   cartItems.innerHTML = "";
 
@@ -102,69 +123,122 @@ function renderCart() {
 
     total += item.price;
 
-    const div = document.createElement("div");
+    const div =
+      document.createElement("div");
 
-    div.className = "cart-item";
+    div.classList.add("cart-item");
 
     div.innerHTML = `
+    
       <span>${item.name}</span>
+
       <span>GHS ${item.price}</span>
+    
     `;
 
     cartItems.appendChild(div);
 
   });
 
-  totalElement.innerText = `Total: GHS ${total}`;
+  totalElement.innerText =
+    `Total: GHS ${total}`;
 
 }
 
-/* SUBMIT ORDER */
+// SUBMIT ORDER
 
 async function submitOrder() {
 
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const location = document.getElementById("location").value;
+  const name =
+    document.getElementById(
+      "customerName"
+    ).value;
 
-  if (!name || !phone || !location || cart.length === 0) {
+  const phone =
+    document.getElementById(
+      "customerPhone"
+    ).value;
 
-    alert("Please complete all fields and add items to cart.");
+  const location =
+    document.getElementById(
+      "customerLocation"
+    ).value;
+
+  // VALIDATION
+
+  if (
+    !name ||
+    !phone ||
+    !location ||
+    cart.length === 0
+  ) {
+
+    alert(
+      "Please complete all fields and add products."
+    );
 
     return;
+
   }
 
-  const items = cart.map((item) => item.name).join(", ");
+  // ORDER DATA
 
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const items =
+    cart.map(item => item.name)
+    .join(", ");
+
+  const total =
+    cart.reduce(
+      (sum, item) => sum + item.price,
+      0
+    );
 
   const orderData = {
+
     name,
     phone,
     location,
     items,
-    total,
+    total
+
   };
 
   try {
 
     await fetch(scriptURL, {
+
       method: "POST",
-      body: JSON.stringify(orderData),
+
+      body: JSON.stringify(orderData)
+
     });
 
-    document.getElementById("success-message").innerText =
+    message.innerText =
       "Order placed successfully!";
+
+    // CLEAR CART
 
     cart.length = 0;
 
-    renderCart();
+    updateCart();
 
-    document.getElementById("name").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("location").value = "";
+    // CLEAR INPUTS
 
-  } catch (error) {
+    document.getElementById(
+      "customerName"
+    ).value = "";
+
+    document.getElementById(
+      "customerPhone"
+    ).value = "";
+
+    document.getElementById(
+      "customerLocation"
+    ).value = "";
+
+  }
+
+  catch (error) {
 
     alert("Failed to submit order.");
 
@@ -172,6 +246,15 @@ async function submitOrder() {
 
 }
 
-/* INITIAL LOAD */
+// BUTTON EVENT
 
-renderProducts();
+document
+  .getElementById("orderBtn")
+  .addEventListener(
+    "click",
+    submitOrder
+  );
+
+// INITIALIZE
+
+displayProducts();
