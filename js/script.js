@@ -18,6 +18,11 @@ const products = [
     price: 18,
     image: "images/carrots.png"
   },
+    {
+    name: "Beetroots",
+    price: 20,
+    image: "images/beetroots.png"
+  },
 
   {
     name: "Fresh Pepper",
@@ -49,13 +54,18 @@ const products = [
   
   {
     name: "avocadoes",
-    price: 50,
+    price: 25,
     image: "images/avocados.png"
   },
   {
     name: "Garden Eggs",
     price: 50,
-    image: "images/gardeneggs.png"
+    image: "images/gardenegg.png"
+  },
+    {
+    name: "Okro",
+    price: 10,
+    image: "images/okro.png"
   }
 
 ];
