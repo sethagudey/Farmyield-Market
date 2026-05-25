@@ -16,7 +16,7 @@ const products = [
   {
     name: "Organic Carrots",
     price: 18,
-    image: "images/carrots.jpg"
+    image: "images/carrots.png"
   },
 
   {
@@ -28,7 +28,7 @@ const products = [
   {
     name: "Fresh Lettuce",
     price: 15,
-    image: "images/lettuce.jpg"
+    image: "images/lettuce.png"
   },
 
   {
