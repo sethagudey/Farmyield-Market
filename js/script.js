@@ -21,7 +21,7 @@ const products = [
   {
     name: "Beetroots",
     price: 20,
-    image: "images/beetroots.png"
+    image: "images/Beetroots.png"
   },
 
   {
