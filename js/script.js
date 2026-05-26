@@ -34,54 +34,33 @@ const products = [
     pricePerKg: 15,
     image: "images/lettuce.png"
   },
-  {
-    id: 5,
-    name: "Beetroots",
-    pricePerKg: 15,
-    image: "images/Beetroots.png"
-  },
-  {
-    id: 6,
-    name: "Avocados",
-    pricePerKg: 15,
-    image: "images/avocados.png"
-  },
-  {
-    id: 7,
-    name: "Okro",
-    pricePerKg: 15,
-    image: "images/okro.png"
-  },
-  {
-    id: 8,
-    name: "Peanut Butter",
-    pricePerKg: 25,
-    image: "images/peanutpaste.png"
-  },
-  {
-    id: 9,
-    name: "Plantain",
-    pricePerKg: 60,
-    image: "images/plantain.png"
-  },
-  {
-    id: 10,
-    name: "Garden Egg",
-    pricePerKg: 40,
-    image: "images/gardenegg.png"
-  },
-  {
-    id: 11,
-    name: "Egg",
-    pricePerKg: 55,
-    image: "images/eggs.png"
-  },
 
   {
-    id: 12,
+    id: 5,
     name: "Watermelon",
     pricePerKg: 35,
     image: "images/watermelon.png"
+  },
+
+  {
+    id: 6,
+    name: "Garden Egg",
+    pricePerKg: 22,
+    image: "images/gardenegg.png"
+  },
+
+  {
+    id: 7,
+    name: "Plantain",
+    pricePerKg: 30,
+    image: "images/plantain.png"
+  },
+
+  {
+    id: 8,
+    name: "Beetroot",
+    pricePerKg: 28,
+    image: "images/beetroot.png"
   }
 
 ];
@@ -104,6 +83,18 @@ const totalElement =
 const message =
   document.getElementById("message");
 
+// PAGES
+
+const productsPage =
+  document.getElementById(
+    "productsPage"
+  );
+
+const checkoutPage =
+  document.getElementById(
+    "checkoutPage"
+  );
+
 // DISPLAY PRODUCTS
 
 function displayProducts() {
@@ -119,7 +110,10 @@ function displayProducts() {
 
     card.innerHTML = `
 
-      <img src="${product.image}" alt="${product.name}" />
+      <img
+        src="${product.image}"
+        alt="${product.name}"
+      />
 
       <div class="card-content">
 
@@ -137,7 +131,9 @@ function displayProducts() {
           class="kg-input"
         />
 
-        <button onclick="addToCart(${product.id})">
+        <button
+          onclick="addToCart(${product.id})"
+        >
           Add To Cart
         </button>
 
@@ -157,19 +153,27 @@ function addToCart(productId) {
 
   const product =
     products.find(
+
       item => item.id === productId
+
     );
 
   const kg =
     parseFloat(
+
       document.getElementById(
         `kg-${productId}`
       ).value
+
     );
+
+  // CHECK IF PRODUCT EXISTS
 
   const existingItem =
     cart.find(
+
       item => item.id === productId
+
     );
 
   if (existingItem) {
@@ -218,7 +222,9 @@ function updateCart() {
 
       <div>
 
-        <strong>${item.name}</strong>
+        <strong>
+          ${item.name}
+        </strong>
 
         <p>
           ${item.kg} Kg ×
@@ -233,7 +239,9 @@ function updateCart() {
           GHS ${itemTotal.toFixed(2)}
         </strong>
 
-        <button onclick="removeItem(${index})">
+        <button
+          onclick="removeItem(${index})"
+        >
           Remove
         </button>
 
@@ -260,6 +268,48 @@ function removeItem(index) {
 
 }
 
+// GO TO CHECKOUT
+
+document
+  .getElementById("goToCheckout")
+  .addEventListener("click", () => {
+
+    if (cart.length === 0) {
+
+      alert(
+        "Please add products to cart."
+      );
+
+      return;
+
+    }
+
+    productsPage.classList.add(
+      "hidden"
+    );
+
+    checkoutPage.classList.remove(
+      "hidden"
+    );
+
+});
+
+// BACK BUTTON
+
+document
+  .getElementById("backBtn")
+  .addEventListener("click", () => {
+
+    checkoutPage.classList.add(
+      "hidden"
+    );
+
+    productsPage.classList.remove(
+      "hidden"
+    );
+
+});
+
 // SUBMIT ORDER
 
 async function submitOrder() {
@@ -279,11 +329,15 @@ async function submitOrder() {
       "customerLocation"
     ).value;
 
+  // VALIDATION
+
   if (
+
     !name ||
     !phone ||
     !location ||
     cart.length === 0
+
   ) {
 
     alert(
@@ -294,6 +348,8 @@ async function submitOrder() {
 
   }
 
+  // FORMAT ITEMS
+
   const items =
     cart.map(item =>
 
@@ -301,6 +357,8 @@ async function submitOrder() {
       (${item.kg}Kg)`
 
     ).join(", ");
+
+  // TOTAL
 
   const total =
     cart.reduce(
@@ -313,6 +371,8 @@ async function submitOrder() {
       0
 
     );
+
+  // ORDER DATA
 
   const orderData = {
 
@@ -337,9 +397,13 @@ async function submitOrder() {
     message.innerText =
       "Order placed successfully!";
 
+    // RESET CART
+
     cart = [];
 
     updateCart();
+
+    // RESET FORM
 
     document.getElementById(
       "customerName"
@@ -353,6 +417,16 @@ async function submitOrder() {
       "customerLocation"
     ).value = "";
 
+    // RETURN TO PRODUCTS PAGE
+
+    checkoutPage.classList.add(
+      "hidden"
+    );
+
+    productsPage.classList.remove(
+      "hidden"
+    );
+
   }
 
   catch (error) {
@@ -365,10 +439,6 @@ async function submitOrder() {
 
 }
 
-// INITIALIZE
-
-displayProducts();
-
 // ORDER BUTTON
 
 document
@@ -377,3 +447,7 @@ document
     "click",
     submitOrder
   );
+
+// INITIALIZE
+
+displayProducts();
