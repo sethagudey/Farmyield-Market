@@ -60,7 +60,7 @@ const products = [
     id: 8,
     name: "Beetroot",
     pricePerKg: 28,
-    image: "images/beetroot.png"
+    image: "images/Beetroot.png"
   }
 
 ];
