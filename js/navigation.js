@@ -35,7 +35,12 @@ function showProductsPage() {
     "hidden"
   );
 
+  successPage.classList.add(
+    "hidden"
+  );
+
 }
+
 
 function showCheckoutPage() {
 
@@ -48,6 +53,10 @@ function showCheckoutPage() {
   );
 
   supportPage.classList.add(
+    "hidden"
+  );
+
+  successPage.classList.add(
     "hidden"
   );
 
@@ -67,11 +76,43 @@ function showSupportPage() {
     "hidden"
   );
 
+  successPage.classList.add(
+    "hidden"
+  );
+
+}
+function showSuccessPage() {
+
+  productsPage.classList.add(
+    "hidden"
+  );
+
+  checkoutPage.classList.add(
+    "hidden"
+  );
+
+  supportPage.classList.add(
+    "hidden"
+  );
+
+  successPage.classList.remove(
+    "hidden"
+  );
+
 }
 
 // =====================================
 // EVENTS
 // =====================================
+
+document
+  .getElementById(
+    "successHomeBtn"
+  )
+  .addEventListener(
+    "click",
+    showProductsPage
+  );
 
 document
   .getElementById("homeNav")
