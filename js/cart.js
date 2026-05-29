@@ -133,6 +133,7 @@ function updateCart() {
 
     totalElement.innerText =
       "Total: GHS 0";
+updateCartBadge();
 
     return;
 
@@ -215,6 +216,10 @@ function updateCart() {
   totalElement.innerText =
 
     `Total: GHS ${total.toFixed(2)}`;
+  
+// UPDATE BADGE
+
+updateCartBadge();
 
 }
 
@@ -239,6 +244,39 @@ function clearCart() {
   cart = [];
 
   updateCart();
+
+}
+
+// ======================================
+// UPDATE CART BADGE
+// ======================================
+
+function updateCartBadge() {
+
+  const cartBadge =
+    document.getElementById(
+      "cartBadge"
+    );
+
+  // TOTAL ITEMS
+
+  const totalItems =
+
+    cart.reduce(
+
+      (sum, item) =>
+
+        sum + item.kg,
+
+      0
+
+    );
+
+  // UPDATE BADGE
+
+  cartBadge.innerText =
+
+    Math.floor(totalItems);
 
 }
 
