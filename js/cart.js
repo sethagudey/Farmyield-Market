@@ -83,9 +83,17 @@ function addToCart(productId) {
 
   }
 
-  // UPDATE CART UI
+  // UPDATE CART
 
   updateCart();
+
+  // SUCCESS FEEDBACK
+
+  showCartNotification(
+
+    `${product.name} added to cart`
+
+  );
 
 }
 
@@ -233,3 +241,87 @@ function clearCart() {
   updateCart();
 
 }
+
+// ======================================
+// CART NOTIFICATION
+// ======================================
+
+function showCartNotification(message) {
+
+  // REMOVE OLD NOTIFICATION
+
+  const existingNotification =
+    document.getElementById(
+      "cartNotification"
+    );
+
+  if (existingNotification) {
+
+    existingNotification.remove();
+
+  }
+
+  // CREATE NOTIFICATION
+
+  const notification =
+    document.createElement(
+      "div"
+    );
+
+  notification.id =
+    "cartNotification";
+
+  notification.innerText =
+    message;
+
+  // STYLE
+
+  notification.style.position =
+    "fixed";
+
+  notification.style.bottom =
+    "20px";
+
+  notification.style.right =
+    "20px";
+
+  notification.style.background =
+    "#2e7d32";
+
+  notification.style.color =
+    "white";
+
+  notification.style.padding =
+    "14px 20px";
+
+  notification.style.borderRadius =
+    "10px";
+
+  notification.style.boxShadow =
+    "0 4px 10px rgba(0,0,0,0.15)";
+
+  notification.style.zIndex =
+    "9999";
+
+  notification.style.fontSize =
+    "0.95rem";
+
+  notification.style.animation =
+    "fadeIn 0.3s ease";
+
+  // ADD TO BODY
+
+  document.body.appendChild(
+    notification
+  );
+
+  // REMOVE AFTER 3 SECONDS
+
+  setTimeout(() => {
+
+    notification.remove();
+
+  }, 3000);
+
+}
+
