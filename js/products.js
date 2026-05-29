@@ -8,35 +8,35 @@ const products = [
     id: 1,
     name: "Fresh Tomatoes",
     pricePerKg: 25,
-    image: "images/tomatoes.jpg"
+    image: "images/tomatoes.png"
   },
 
   {
     id: 2,
     name: "Carrots",
     pricePerKg: 18,
-    image: "images/carrots.jpg"
+    image: "images/carrots.png"
   },
 
   {
     id: 3,
     name: "Fresh Pepper",
     pricePerKg: 20,
-    image: "images/pepper.jpg"
+    image: "images/pepper.png"
   },
 
   {
     id: 4,
     name: "Lettuce",
     pricePerKg: 15,
-    image: "images/lettuce.jpg"
+    image: "images/lettuce.png"
   },
 
   {
     id: 5,
     name: "Watermelon",
     pricePerKg: 35,
-    image: "images/watermelon.jpg"
+    image: "images/watermelon.png"
   }
 
 ];
