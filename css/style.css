@@ -852,4 +852,95 @@ body {
 
 }
 
+/* ======================================
+   WEBSITE LOADER
+====================================== */
+
+#loader {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100vh;
+
+  background: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 99999;
+
+  transition: opacity 0.4s ease;
+
+}
+
+/* HIDE LOADER */
+
+#loader.hidden {
+
+  opacity: 0;
+
+  visibility: hidden;
+
+}
+
+/* ======================================
+   SPINNER
+====================================== */
+
+.spinner {
+
+  width: 70px;
+
+  height: 70px;
+
+  border: 7px solid #ddd;
+
+  border-top: 7px solid #2e7d32;
+
+  border-radius: 50%;
+
+  animation:
+    spin 1s linear infinite;
+
+}
+
+/* SPIN ANIMATION */
+
+@keyframes spin {
+
+  0% {
+
+    transform: rotate(0deg);
+
+  }
+
+  100% {
+
+    transform: rotate(360deg);
+
+  }
+
+}
+
+/* ======================================
+   ORDER BUTTON LOADING
+====================================== */
+
+.loading-btn {
+
+  opacity: 0.7;
+
+  pointer-events: none;
+
+}
+
 
