@@ -2,183 +2,321 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>FarmYield Marketplace</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-  <link rel="stylesheet" href="css/style.css" />
+  <title>
+    FarmFresh Marketplace
+  </title>
+
+  <!-- CSS -->
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  />
+
 </head>
 
 <body>
 
-  <!-- HEADER -->
+  <!-- =====================================
+       HEADER
+  ====================================== -->
 
   <header class="hero">
 
-    <h1>FarmYield Marketplace</h1>
+    <!-- TOP BAR -->
+
+    <div class="top-bar">
+
+      <!-- LOGO -->
+
+      <div class="logo">
+
+        FarmFresh Marketplace
+
+      </div>
+
+      <!-- DROPDOWN MENU -->
+
+      <div class="dropdown">
+
+        <button class="menu-btn">
+
+          ☰
+
+        </button>
+
+        <div class="dropdown-content">
+
+          <button id="homeNav">
+
+            Home
+
+          </button>
+
+          <button id="supportNav">
+
+            Support
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- HERO TEXT -->
+
+    <h1>
+
+      Fresh Farm Produce
+
+    </h1>
 
     <p>
-      Fresh farm produce directly from heavy metal free local farmer
+
+      Fresh produce directly from local farmers
+
     </p>
-    <nav class="top-nav">
-
-  <button id="homeNav">
-    Home
-  </button>
-
-  <button id="supportNav">
-    Support
-  </button>
-
-</nav>
 
   </header>
 
-  <!-- PRODUCTS -->
+  <!-- =====================================
+       MAIN CONTENT
+  ====================================== -->
 
   <main class="container">
 
-  <!-- PRODUCTS PAGE -->
+    <!-- =====================================
+         PRODUCTS PAGE
+    ====================================== -->
 
-  <section id="productsPage">
+    <section id="productsPage">
+
+      <!-- PRODUCTS GRID -->
+
+      <section
+        class="products"
+        id="products"
+      ></section>
+
+      <!-- CHECKOUT BUTTON -->
+
+      <div class="navigation">
+
+        <button id="goToCheckout">
+
+          Continue To Checkout
+
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- =====================================
+         CHECKOUT PAGE
+    ====================================== -->
 
     <section
-      class="products"
-      id="products"
-    ></section>
+      id="checkoutPage"
+      class="hidden"
+    >
 
-    <div class="navigation">
+      <div class="cart">
 
-      <button id="goToCheckout">
-        Continue To Checkout
-      </button>
+        <h2>
 
-    </div>
+          Checkout
 
-  </section>
-    <!-- SUPPORT PAGE -->
+        </h2>
 
-<section
-  id="supportPage"
-  class="hidden"
->
+        <!-- CART ITEMS -->
 
-  <div class="support-card">
+        <div id="cartItems"></div>
 
-    <h2>
-      Customer Support
-    </h2>
+        <!-- TOTAL -->
 
-    <p>
-      Need help with your order?
-    </p>
+        <h3 id="total">
 
-    <div class="support-info">
+          Total: GHS 0
 
-      <h3>Phone</h3>
+        </h3>
 
-      <p>
-        +233 24 123 4567
-      </p>
+        <!-- CUSTOMER DETAILS -->
 
-      <h3>WhatsApp</h3>
+        <div class="checkout">
 
-      <p>
-        +233 24 123 4567
-      </p>
+          <input
+            type="text"
+            id="customerName"
+            placeholder="Your Name"
+          />
 
-      <h3>Email</h3>
+          <input
+            type="text"
+            id="customerPhone"
+            placeholder="Phone Number"
+          />
 
-      <p>
-        support@farmfresh.com
-      </p>
+          <input
+            type="text"
+            id="customerLocation"
+            placeholder="Delivery Location"
+          />
 
-      <h3>Delivery Hours</h3>
+        </div>
 
-      <p>
-        Monday - Saturday
-        <br>
-        7:00 AM - 6:00 PM
-      </p>
+        <!-- BUTTONS -->
 
-      <h3>Location</h3>
+        <div class="checkout-buttons">
 
-      <p>
-        Accra, Ghana
-      </p>
+          <button id="backBtn">
 
-    </div>
+            Back
 
-    <button id="supportBackBtn">
-      Back Home
-    </button>
+          </button>
 
-  </div>
+          <button id="orderBtn">
 
-</section>
+            Place Order
 
-  <!-- CHECKOUT PAGE -->
+          </button>
 
-  <section
-    id="checkoutPage"
-    class="hidden"
-  >
+        </div>
 
-    <div class="cart">
+        <!-- MESSAGE -->
 
-      <h2>Checkout</h2>
-
-      <div id="cartItems"></div>
-
-      <h3 id="total">
-        Total: GHS 0
-      </h3>
-
-      <div class="checkout">
-
-        <input
-          type="text"
-          id="customerName"
-          placeholder="Your Name"
-        />
-
-        <input
-          type="text"
-          id="customerPhone"
-          placeholder="Phone Number"
-        />
-
-        <input
-          type="text"
-          id="customerLocation"
-          placeholder="Delivery Location"
-        />
+        <p id="message"></p>
 
       </div>
 
-      <div class="checkout-buttons">
+    </section>
 
-        <button id="backBtn">
-          Back
-        </button>
+    <!-- =====================================
+         SUPPORT PAGE
+    ====================================== -->
 
-        <button id="orderBtn">
-          Place Order
+    <section
+      id="supportPage"
+      class="hidden"
+    >
+
+      <div class="support-card">
+
+        <h2>
+
+          Customer Support
+
+        </h2>
+
+        <p>
+
+          Need help with your order?
+
+        </p>
+
+        <div class="support-info">
+
+          <h3>
+
+            Phone
+
+          </h3>
+
+          <p>
+
+            +233 24 123 4567
+
+          </p>
+
+          <h3>
+
+            WhatsApp
+
+          </h3>
+
+          <p>
+
+            +233 24 123 4567
+
+          </p>
+
+          <h3>
+
+            Email
+
+          </h3>
+
+          <p>
+
+            support@farmfresh.com
+
+          </p>
+
+          <h3>
+
+            Delivery Hours
+
+          </h3>
+
+          <p>
+
+            Monday - Saturday
+            <br />
+            7:00 AM - 6:00 PM
+
+          </p>
+
+          <h3>
+
+            Location
+
+          </h3>
+
+          <p>
+
+            Accra, Ghana
+
+          </p>
+
+        </div>
+
+        <!-- BACK BUTTON -->
+
+        <button id="supportBackBtn">
+
+          Back Home
+
         </button>
 
       </div>
 
-      <p id="message"></p>
+    </section>
 
-    </div>
+  </main>
 
-  </section>
+  <!-- =====================================
+       JAVASCRIPT FILES
+  ====================================== -->
 
-</main>
+  <script src="js/products.js"></script>
 
+  <script src="js/cart.js"></script>
 
-  <script src="js/script.js"></script>
+  <script src="js/navigation.js"></script>
+
+  <script src="js/api.js"></script>
+
+  <script src="js/app.js"></script>
 
 </body>
 
