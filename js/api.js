@@ -3,7 +3,7 @@
 // =====================================
 
 const scriptURL =
-  "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
+  "https://script.google.com/macros/s/AKfycbxbHjxZ9Hb-hyNZMNMih1ENy878FsPKe1Ug8JIsBcyUFTdf5sVI-8RwBlvzpkxUWgOIKw/exec";
 
 // =====================================
 // SUBMIT ORDER
