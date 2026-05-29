@@ -4,12 +4,23 @@
 
 const products = [
 
-  {
-    id: 1,
-    name: "Fresh Tomatoes",
-    pricePerKg: 25,
-    image: "images/tomatoes.png"
-  },
+{
+  id: 1,
+
+  name: "Tomatoes",
+
+  pricePerKg: 25,
+
+  image:
+    "images/tomatoes.png",
+
+  description:
+    "Fresh organic tomatoes harvested directly from local farms in Ghana.",
+
+  stock:
+    "In Stock"
+},
+
 
   {
     id: 2,
