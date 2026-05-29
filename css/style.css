@@ -1,6 +1,7 @@
-/* =====================================
+```css id="o4z9te"
+/* ======================================
    RESET
-===================================== */
+====================================== */
 
 * {
 
@@ -12,9 +13,9 @@
 
 }
 
-/* =====================================
+/* ======================================
    BODY
-===================================== */
+====================================== */
 
 body {
 
@@ -28,9 +29,9 @@ body {
 
 }
 
-/* =====================================
+/* ======================================
    HERO
-===================================== */
+====================================== */
 
 .hero {
 
@@ -43,13 +44,13 @@ body {
 
   color: white;
 
-  padding: 30px 20px 60px;
+  padding: 25px 20px 60px;
 
 }
 
-/* =====================================
+/* ======================================
    TOP BAR
-===================================== */
+====================================== */
 
 .top-bar {
 
@@ -59,31 +60,47 @@ body {
 
   align-items: center;
 
-  margin-bottom: 40px;
-
 }
 
-/* LOGO */
+/* ======================================
+   LOGO
+====================================== */
 
 .logo {
 
-  font-size: 1.4rem;
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+}
+
+.logo img {
+
+  width: 50px;
+
+  height: 50px;
+
+  object-fit: contain;
+
+}
+
+.logo span {
+
+  font-size: 1.3rem;
 
   font-weight: bold;
 
 }
 
-/* =====================================
-   DROPDOWN MENU
-===================================== */
+/* ======================================
+   NAVIGATION MENU
+====================================== */
 
-.dropdown {
+.nav-menu {
 
   position: relative;
-
-  display: inline-block;
-
-  z-index: 9999;
 
 }
 
@@ -91,54 +108,54 @@ body {
 
 .menu-btn {
 
+  width: 45px;
+
+  height: 45px;
+
+  border: none;
+
+  border-radius: 10px;
+
   background: white;
 
   color: #2e7d32;
 
-  border: none;
-
-  padding: 10px 15px;
-
-  border-radius: 8px;
+  font-size: 1.3rem;
 
   cursor: pointer;
 
-  font-size: 1.2rem;
-
-  font-weight: bold;
-
 }
 
-/* DROPDOWN CONTENT */
+/* DROPDOWN */
 
-.dropdown-content {
-
-  display: none;
+.menu-dropdown {
 
   position: absolute;
 
-  top: 50px;
+  top: 55px;
 
   right: 0;
 
+  width: 180px;
+
   background: white;
 
-  min-width: 180px;
-
-  border-radius: 10px;
+  border-radius: 12px;
 
   overflow: hidden;
 
   box-shadow:
     0 4px 12px rgba(0,0,0,0.15);
 
-  z-index: 9999;
+  display: none;
+
+  z-index: 999;
 
 }
 
-/* SHOW MENU */
+/* ACTIVE MENU */
 
-.dropdown:hover .dropdown-content {
+.menu-dropdown.active {
 
   display: block;
 
@@ -146,7 +163,7 @@ body {
 
 /* DROPDOWN BUTTONS */
 
-.dropdown-content button {
+.menu-dropdown button {
 
   width: 100%;
 
@@ -154,7 +171,7 @@ body {
 
   background: white;
 
-  padding: 14px 18px;
+  padding: 15px;
 
   text-align: left;
 
@@ -164,39 +181,43 @@ body {
 
 }
 
-/* HOVER EFFECT */
+/* HOVER */
 
-.dropdown-content button:hover {
+.menu-dropdown button:hover {
 
   background: #f4f4f4;
 
 }
 
-/* =====================================
-   HERO TEXT
-===================================== */
+/* ======================================
+   HERO CONTENT
+====================================== */
 
-.hero h1 {
+.hero-content {
 
   text-align: center;
 
-  font-size: 3rem;
-
-  margin-bottom: 10px;
+  margin-top: 60px;
 
 }
 
-.hero p {
+.hero-content h1 {
 
-  text-align: center;
+  font-size: 3rem;
+
+  margin-bottom: 15px;
+
+}
+
+.hero-content p {
 
   font-size: 1.1rem;
 
 }
 
-/* =====================================
-   CONTAINER
-===================================== */
+/* ======================================
+   MAIN CONTAINER
+====================================== */
 
 .container {
 
@@ -210,9 +231,9 @@ body {
 
 }
 
-/* =====================================
+/* ======================================
    PRODUCTS GRID
-===================================== */
+====================================== */
 
 .products {
 
@@ -228,9 +249,9 @@ body {
 
 }
 
-/* =====================================
+/* ======================================
    PRODUCT CARD
-===================================== */
+====================================== */
 
 .card {
 
@@ -273,7 +294,7 @@ body {
 
 }
 
-/* PRODUCT NAME */
+/* PRODUCT TITLE */
 
 .card-content h3 {
 
@@ -281,7 +302,7 @@ body {
 
 }
 
-/* PRODUCT PRICE */
+/* PRICE */
 
 .price {
 
@@ -339,9 +360,9 @@ body {
 
 }
 
-/* =====================================
+/* ======================================
    NAVIGATION BUTTON
-===================================== */
+====================================== */
 
 .navigation {
 
@@ -369,9 +390,9 @@ body {
 
 }
 
-/* =====================================
+/* ======================================
    CART
-===================================== */
+====================================== */
 
 .cart {
 
@@ -448,9 +469,9 @@ body {
 
 }
 
-/* =====================================
+/* ======================================
    CHECKOUT
-===================================== */
+====================================== */
 
 .checkout {
 
@@ -532,9 +553,9 @@ body {
 
 }
 
-/* =====================================
+/* ======================================
    SUPPORT PAGE
-===================================== */
+====================================== */
 
 .support-card {
 
@@ -553,21 +574,17 @@ body {
 
 }
 
-/* SUPPORT TITLE */
-
 .support-card h2 {
-
-  margin-bottom: 10px;
 
   color: #2e7d32;
 
-}
+  margin-bottom: 15px;
 
-/* SUPPORT INFO */
+}
 
 .support-info {
 
-  margin-top: 25px;
+  margin-top: 20px;
 
 }
 
@@ -579,13 +596,11 @@ body {
 
 }
 
-/* SUPPORT BUTTON */
-
 .support-card button {
 
-  margin-top: 30px;
-
   width: 100%;
+
+  margin-top: 30px;
 
   border: none;
 
@@ -601,67 +616,9 @@ body {
 
 }
 
-/* =====================================
-   HIDDEN
-===================================== */
-
-.hidden {
-
-  display: none;
-
-}
-
-/* =====================================
-   MOBILE
-===================================== */
-
-@media (max-width: 768px) {
-
-  .hero h1 {
-
-    font-size: 2rem;
-
-  }
-
-  .checkout-buttons {
-
-    flex-direction: column;
-
-  }
-
-  .cart-item {
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 10px;
-
-  }
-
-}
-.logo {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-}
-
-.logo img {
-
-  width: 50px;
-
-  height: 50px;
-
-  object-fit: contain;
-
-}
-/* =====================================
+/* ======================================
    SUCCESS PAGE
-===================================== */
+====================================== */
 
 .success-card {
 
@@ -710,26 +667,6 @@ body {
 
 }
 
-/* SUCCESS TITLE */
-
-.success-card h2 {
-
-  color: #2e7d32;
-
-  margin-bottom: 15px;
-
-}
-
-/* SUCCESS TEXT */
-
-.success-card p {
-
-  color: #555;
-
-  line-height: 1.7;
-
-}
-
 /* SUCCESS BUTTON */
 
 .success-card button {
@@ -742,18 +679,17 @@ body {
 
   color: white;
 
-  padding: 15px 30px;
+  padding: 14px 30px;
 
   border-radius: 8px;
 
   cursor: pointer;
 
-  font-size: 1rem;
-
 }
-/* =====================================
-   MY ORDERS PAGE
-===================================== */
+
+/* ======================================
+   ORDERS PAGE
+====================================== */
 
 .orders-card {
 
@@ -772,8 +708,6 @@ body {
 
 }
 
-/* TITLE */
-
 .orders-card h2 {
 
   color: #2e7d32;
@@ -781,8 +715,6 @@ body {
   margin-bottom: 10px;
 
 }
-
-/* SUBTITLE */
 
 .orders-subtitle {
 
@@ -806,8 +738,6 @@ body {
 
 }
 
-/* ORDER HEAD */
-
 .order-item h3 {
 
   color: #2e7d32;
@@ -816,13 +746,9 @@ body {
 
 }
 
-/* ORDER TEXT */
-
 .order-item p {
 
   margin-bottom: 8px;
-
-  color: #444;
 
 }
 
@@ -838,7 +764,7 @@ body {
 
 }
 
-/* BACK BUTTON */
+/* ORDERS BUTTON */
 
 .orders-card button {
 
@@ -860,3 +786,43 @@ body {
 
 }
 
+/* ======================================
+   HIDDEN
+====================================== */
+
+.hidden {
+
+  display: none;
+
+}
+
+/* ======================================
+   MOBILE RESPONSIVE
+====================================== */
+
+@media (max-width: 768px) {
+
+  .hero-content h1 {
+
+    font-size: 2rem;
+
+  }
+
+  .checkout-buttons {
+
+    flex-direction: column;
+
+  }
+
+  .cart-item {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+  }
+
+}
+```
