@@ -1,9 +1,13 @@
+// =====================================
 // GOOGLE APPS SCRIPT URL
+// =====================================
 
 const scriptURL =
   "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
 
+// =====================================
 // PRODUCTS
+// =====================================
 
 const products = [
 
@@ -11,65 +15,83 @@ const products = [
     id: 1,
     name: "Fresh Tomatoes",
     pricePerKg: 25,
-    image: "images/tomatoes.png"
+    image: "images/tomatoes.jpg"
   },
 
   {
     id: 2,
     name: "Carrots",
     pricePerKg: 18,
-    image: "images/carrots.png"
+    image: "images/carrots.jpg"
   },
 
   {
     id: 3,
     name: "Fresh Pepper",
     pricePerKg: 20,
-    image: "images/pepper.png"
+    image: "images/pepper.jpg"
   },
 
   {
     id: 4,
     name: "Lettuce",
     pricePerKg: 15,
-    image: "images/lettuce.png"
+    image: "images/lettuce.jpg"
   },
 
   {
     id: 5,
     name: "Watermelon",
     pricePerKg: 35,
-    image: "images/watermelon.png"
+    image: "images/watermelon.jpg"
   },
 
   {
     id: 6,
     name: "Garden Egg",
     pricePerKg: 22,
-    image: "images/gardenegg.png"
+    image: "images/garden-egg.jpg"
   },
 
   {
     id: 7,
     name: "Plantain",
     pricePerKg: 30,
-    image: "images/plantain.png"
+    image: "images/plantain.jpg"
   },
 
   {
     id: 8,
     name: "Beetroot",
     pricePerKg: 28,
-    image: "images/Beetroots.png"
+    image: "images/beetroot.jpg"
+  },
+
+  {
+    id: 9,
+    name: "Avocado",
+    pricePerKg: 40,
+    image: "images/avocado.jpg"
+  },
+
+  {
+    id: 10,
+    name: "Groundnut Paste",
+    pricePerKg: 45,
+    image: "images/groundnut-paste.jpg"
   }
 
 ];
 
+// =====================================
 // CART
+// =====================================
 
 let cart = [];
 
+// =====================================
 // ELEMENTS
+// =====================================
 
 const productsContainer =
   document.getElementById("products");
@@ -95,7 +117,14 @@ const checkoutPage =
     "checkoutPage"
   );
 
+const supportPage =
+  document.getElementById(
+    "supportPage"
+  );
+
+// =====================================
 // DISPLAY PRODUCTS
+// =====================================
 
 function displayProducts() {
 
@@ -117,7 +146,9 @@ function displayProducts() {
 
       <div class="card-content">
 
-        <h3>${product.name}</h3>
+        <h3>
+          ${product.name}
+        </h3>
 
         <p class="price">
           GHS ${product.pricePerKg} / Kg
@@ -127,6 +158,7 @@ function displayProducts() {
           type="number"
           min="1"
           value="1"
+          step="0.5"
           id="kg-${product.id}"
           class="kg-input"
         />
@@ -147,7 +179,9 @@ function displayProducts() {
 
 }
 
+// =====================================
 // ADD TO CART
+// =====================================
 
 function addToCart(productId) {
 
@@ -167,7 +201,19 @@ function addToCart(productId) {
 
     );
 
-  // CHECK IF PRODUCT EXISTS
+  // VALIDATE KG
+
+  if (kg <= 0) {
+
+    alert(
+      "Please enter a valid quantity."
+    );
+
+    return;
+
+  }
+
+  // CHECK EXISTING PRODUCT
 
   const existingItem =
     cart.find(
@@ -176,11 +222,15 @@ function addToCart(productId) {
 
     );
 
+  // UPDATE EXISTING ITEM
+
   if (existingItem) {
 
     existingItem.kg += kg;
 
   }
+
+  // ADD NEW ITEM
 
   else {
 
@@ -198,13 +248,36 @@ function addToCart(productId) {
 
 }
 
+// =====================================
 // UPDATE CART
+// =====================================
 
 function updateCart() {
 
   cartItems.innerHTML = "";
 
   let total = 0;
+
+  // EMPTY CART
+
+  if (cart.length === 0) {
+
+    cartItems.innerHTML = `
+
+      <p>
+        Your cart is empty.
+      </p>
+
+    `;
+
+    totalElement.innerText =
+      "Total: GHS 0";
+
+    return;
+
+  }
+
+  // DISPLAY CART ITEMS
 
   cart.forEach((item, index) => {
 
@@ -258,7 +331,9 @@ function updateCart() {
 
 }
 
+// =====================================
 // REMOVE ITEM
+// =====================================
 
 function removeItem(index) {
 
@@ -267,6 +342,10 @@ function removeItem(index) {
   updateCart();
 
 }
+
+// =====================================
+// NAVIGATION
+// =====================================
 
 // GO TO CHECKOUT
 
@@ -292,13 +371,61 @@ document
       "hidden"
     );
 
+    supportPage.classList.add(
+      "hidden"
+    );
+
 });
 
-// BACK BUTTON
+// BACK TO PRODUCTS
 
 document
   .getElementById("backBtn")
   .addEventListener("click", () => {
+
+    checkoutPage.classList.add(
+      "hidden"
+    );
+
+    supportPage.classList.add(
+      "hidden"
+    );
+
+    productsPage.classList.remove(
+      "hidden"
+    );
+
+});
+
+// OPEN SUPPORT PAGE
+
+document
+  .getElementById("supportNav")
+  .addEventListener("click", () => {
+
+    productsPage.classList.add(
+      "hidden"
+    );
+
+    checkoutPage.classList.add(
+      "hidden"
+    );
+
+    supportPage.classList.remove(
+      "hidden"
+    );
+
+});
+
+// HOME NAVIGATION
+
+document
+  .getElementById("homeNav")
+  .addEventListener("click", () => {
+
+    supportPage.classList.add(
+      "hidden"
+    );
 
     checkoutPage.classList.add(
       "hidden"
@@ -310,7 +437,25 @@ document
 
 });
 
+// SUPPORT BACK BUTTON
+
+document
+  .getElementById("supportBackBtn")
+  .addEventListener("click", () => {
+
+    supportPage.classList.add(
+      "hidden"
+    );
+
+    productsPage.classList.remove(
+      "hidden"
+    );
+
+});
+
+// =====================================
 // SUBMIT ORDER
+// =====================================
 
 async function submitOrder() {
 
@@ -417,7 +562,7 @@ async function submitOrder() {
       "customerLocation"
     ).value = "";
 
-    // RETURN TO PRODUCTS PAGE
+    // RETURN TO HOME PAGE
 
     checkoutPage.classList.add(
       "hidden"
@@ -439,7 +584,9 @@ async function submitOrder() {
 
 }
 
+// =====================================
 // ORDER BUTTON
+// =====================================
 
 document
   .getElementById("orderBtn")
@@ -448,6 +595,10 @@ document
     submitOrder
   );
 
+// =====================================
 // INITIALIZE
+// =====================================
 
 displayProducts();
+
+updateCart();
