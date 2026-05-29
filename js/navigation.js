@@ -121,3 +121,9 @@ document
 
     }
   );
+// SUCCESS PAGE
+
+const successPage =
+  document.getElementById(
+    "successPage"
+  );
