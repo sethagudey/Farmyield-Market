@@ -17,6 +17,11 @@ const supportPage =
     "supportPage"
   );
 
+const ordersPage =
+  document.getElementById(
+    "ordersPage"
+  );
+
 // =====================================
 // NAVIGATION FUNCTIONS
 // =====================================
@@ -36,6 +41,10 @@ function showProductsPage() {
   );
 
   successPage.classList.add(
+    "hidden"
+  );
+
+  ordersPage.classList.add(
     "hidden"
   );
 
@@ -101,10 +110,49 @@ function showSuccessPage() {
 
 }
 
+function showOrdersPage() {
+
+  productsPage.classList.add(
+    "hidden"
+  );
+
+  checkoutPage.classList.add(
+    "hidden"
+  );
+
+  supportPage.classList.add(
+    "hidden"
+  );
+
+  successPage.classList.add(
+    "hidden"
+  );
+
+  ordersPage.classList.remove(
+    "hidden"
+  );
+
+  renderOrders();
+
+}
+
 // =====================================
 // EVENTS
 // =====================================
 
+document
+  .getElementById("ordersNav")
+  .addEventListener(
+    "click",
+    showOrdersPage
+  );
+
+document
+  .getElementById("ordersBackBtn")
+  .addEventListener(
+    "click",
+    showProductsPage
+  );
 document
   .getElementById(
     "successHomeBtn"
