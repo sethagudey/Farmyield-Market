@@ -20,14 +20,23 @@ const products = [
   stock:
     "In Stock"
 },
+  
+{
+  id: 1,
 
+  name: "Tomatoes",
 
-  {
-    id: 2,
-    name: "Carrots",
-    pricePerKg: 18,
-    image: "images/carrots.png"
-  },
+  pricePerKg: 25,
+
+  image:
+    "images/carrots.png",
+
+  description:
+    "Fresh organic tomatoes harvested directly from local farms in Ghana.",
+
+  stock:
+    "In Stock"
+},
 
   {
     id: 3,
