@@ -55,19 +55,35 @@ async function submitOrder() {
 
     ).join(", ");
 
-  // TOTAL
+// ======================================
+// TOTAL
+// ======================================
 
-  const total =
-    cart.reduce(
+const subtotal =
 
-      (sum, item) =>
+  cart.reduce(
 
-        sum +
-        (item.pricePerKg * item.kg),
+    (sum, item) =>
 
-      0
+      sum +
+      (
+        item.pricePerKg *
+        item.kg
+      ),
 
-    );
+    0
+
+  );
+
+// DELIVERY FEE
+
+const deliveryFee = 45;
+
+// FINAL TOTAL
+
+const total =
+
+  subtotal + deliveryFee;
 
   // ORDER DATA
 
