@@ -114,7 +114,7 @@ async function submitOrder() {
       "customerLocation"
     ).value = "";
 
-    showProductsPage();
+   showSuccessPage();
 
   }
 
