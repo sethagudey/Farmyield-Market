@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
   />
 
   <title>
-    Farmyield Marketplace
+    FarmFresh Marketplace
   </title>
 
   <!-- CSS -->
@@ -26,83 +27,84 @@
 <body>
 
   <!-- =====================================
-       HEADER
+       HERO SECTION
   ====================================== -->
-<header class="hero">
 
-  <!-- TOP BAR -->
+  <header class="hero">
 
-  <div class="top-bar">
+    <!-- TOP BAR -->
 
-    <!-- LOGO -->
+    <div class="top-bar">
 
-    <div class="logo">
+      <!-- LOGO -->
 
-      <img
-        src="images/logo.png"
-        alt="FarmFresh Logo"
-      />
+      <div class="logo">
 
-      <span>
-        FarmFresh
-      </span>
+        <img
+          src="images/logo.png"
+          alt="FarmFresh Logo"
+        />
 
-    </div>
+        <span>
+          FarmFresh
+        </span>
 
-    <!-- NAVIGATION -->
+      </div>
 
-    <div class="nav-menu">
+      <!-- NAVIGATION MENU -->
 
-      <button
-        class="menu-btn"
-        id="menuBtn"
-      >
+      <div class="nav-menu">
 
-        ☰
+        <button
+          class="menu-btn"
+          id="menuBtn"
+        >
 
-      </button>
+          ☰
 
-      <div
-        class="menu-dropdown"
-        id="menuDropdown"
-      >
-
-        <button id="homeNav">
-          Home
         </button>
 
-        <button id="ordersNav">
-          My Orders
-        </button>
+        <div
+          class="menu-dropdown"
+          id="menuDropdown"
+        >
 
-        <button id="supportNav">
-          Support
-        </button>
+          <button id="homeNav">
+            Home
+          </button>
+
+          <button id="ordersNav">
+            My Orders
+          </button>
+
+          <button id="supportNav">
+            Support
+          </button>
+
+        </div>
 
       </div>
 
     </div>
 
-  </div>
+    <!-- HERO CONTENT -->
 
-  <!-- HERO CONTENT -->
+    <div class="hero-content">
 
-  <div class="hero-content">
+      <h1>
+        Fresh Farm Produce
+      </h1>
 
-    <h1>
-      Fresh Farm Produce
-    </h1>
+      <p>
+        Fresh produce directly from local farmers
+      </p>
 
-    <p>
-      Fresh produce directly from local farmers
-    </p>
+    </div>
 
-  </div>
-
-</header>
+  </header>
 
   <!-- =====================================
-       MAIN CONTENT
+       MAIN CONTAINER
   ====================================== -->
 
   <main class="container">
@@ -146,9 +148,7 @@
       <div class="cart">
 
         <h2>
-
           Checkout
-
         </h2>
 
         <!-- CART ITEMS -->
@@ -158,9 +158,7 @@
         <!-- TOTAL -->
 
         <h3 id="total">
-
           Total: GHS 0
-
         </h3>
 
         <!-- CUSTOMER DETAILS -->
@@ -192,15 +190,11 @@
         <div class="checkout-buttons">
 
           <button id="backBtn">
-
             Back
-
           </button>
 
           <button id="orderBtn">
-
             Place Order
-
           </button>
 
         </div>
@@ -225,84 +219,58 @@
       <div class="support-card">
 
         <h2>
-
           Customer Support
-
         </h2>
 
         <p>
-
           Need help with your order?
-
         </p>
 
         <div class="support-info">
 
           <h3>
-
             Phone
-
           </h3>
 
           <p>
-
             +233 24 123 4567
-
           </p>
 
           <h3>
-
             WhatsApp
-
           </h3>
 
           <p>
-
             +233 24 123 4567
-
           </p>
 
           <h3>
-
             Email
-
           </h3>
 
           <p>
-
             support@farmfresh.com
-
           </p>
 
           <h3>
-
             Delivery Hours
-
           </h3>
 
           <p>
-
             Monday - Saturday
             <br />
             7:00 AM - 6:00 PM
-
           </p>
 
           <h3>
-
             Location
-
           </h3>
 
           <p>
-
             Accra, Ghana
-
           </p>
 
         </div>
-
-        <!-- BACK BUTTON -->
 
         <button id="supportBackBtn">
 
@@ -313,91 +281,90 @@
       </div>
 
     </section>
-    <!-- =====================================
-     SUCCESS PAGE
-===================================== -->
-
-<section
-  id="successPage"
-  class="hidden"
->
-
-  <div class="success-card">
-
-    <div class="success-icon">
-
-      ✓
-
-    </div>
-
-    <h2>
-
-      Order Placed Successfully!
-
-    </h2>
-
-    <p>
-
-      Thank you for shopping with us.
-      <br />
-      Your fresh produce will be delivered soon.
-
-    </p>
-
-    <button id="successHomeBtn">
-
-      Continue Shopping
-
-    </button>
-
-  </div>
-
-</section>
 
     <!-- =====================================
-     MY ORDERS PAGE
-===================================== -->
+         SUCCESS PAGE
+    ====================================== -->
 
-<section
-  id="ordersPage"
-  class="hidden"
->
+    <section
+      id="successPage"
+      class="hidden"
+    >
 
-  <div class="orders-card">
+      <div class="success-card">
 
-    <h2>
+        <div class="success-icon">
 
-      My Orders
+          ✓
 
-    </h2>
+        </div>
 
-    <p class="orders-subtitle">
+        <h2>
 
-      Your recent orders
+          Order Placed Successfully!
 
-    </p>
+        </h2>
 
-    <!-- ORDERS LIST -->
+        <p>
 
-    <div id="ordersList">
+          Thank you for shopping with us.
+          <br />
+          Your fresh produce will be delivered soon.
 
-    </div>
+        </p>
 
-    <!-- BUTTON -->
+        <button id="successHomeBtn">
 
-    <button id="ordersBackBtn">
+          Continue Shopping
 
-      Back Home
+        </button>
 
-    </button>
+      </div>
 
-  </div>
+    </section>
 
-</section>
+    <!-- =====================================
+         MY ORDERS PAGE
+    ====================================== -->
+
+    <section
+      id="ordersPage"
+      class="hidden"
+    >
+
+      <div class="orders-card">
+
+        <h2>
+
+          My Orders
+
+        </h2>
+
+        <p class="orders-subtitle">
+
+          Your recent orders
+
+        </p>
+
+        <!-- ORDERS LIST -->
+
+        <div id="ordersList">
+
+        </div>
+
+        <!-- BACK BUTTON -->
+
+        <button id="ordersBackBtn">
+
+          Back Home
+
+        </button>
+
+      </div>
+
+    </section>
 
   </main>
-
-  
 
   <!-- =====================================
        JAVASCRIPT FILES
@@ -416,3 +383,4 @@
 </body>
 
 </html>
+```
