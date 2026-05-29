@@ -83,6 +83,8 @@ body {
 
   display: inline-block;
 
+  z-index: 9999;
+
 }
 
 /* MENU BUTTON */
@@ -115,6 +117,8 @@ body {
 
   position: absolute;
 
+  top: 50px;
+
   right: 0;
 
   background: white;
@@ -126,16 +130,15 @@ body {
   overflow: hidden;
 
   box-shadow:
-    0 4px 10px rgba(0,0,0,0.1);
+    0 4px 12px rgba(0,0,0,0.15);
 
-  z-index: 100;
+  z-index: 9999;
 
 }
 
-/* SHOW DROPDOWN */
+/* SHOW MENU */
 
-.dropdown:hover
-.dropdown-content {
+.dropdown:hover .dropdown-content {
 
   display: block;
 
@@ -161,7 +164,7 @@ body {
 
 }
 
-/* HOVER */
+/* HOVER EFFECT */
 
 .dropdown-content button:hover {
 
