@@ -62,10 +62,12 @@ function displayProducts() {
     card.classList.add("card");
 
     card.innerHTML = `
+    <img
+     src="${product.image}"
+     alt="${product.name}"
+     onclick="openProductModal(${product.id})"
+/>
 
-      <img
-        src="${product.image}"
-        alt="${product.name}"
       />
 
       <div class="card-content">
