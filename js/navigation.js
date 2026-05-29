@@ -1,6 +1,7 @@
-// =====================================
+```javascript
+// ======================================
 // PAGE ELEMENTS
-// =====================================
+// ======================================
 
 const productsPage =
   document.getElementById(
@@ -17,18 +18,77 @@ const supportPage =
     "supportPage"
   );
 
+const successPage =
+  document.getElementById(
+    "successPage"
+  );
+
 const ordersPage =
   document.getElementById(
     "ordersPage"
   );
 
-// =====================================
-// NAVIGATION FUNCTIONS
-// =====================================
+// ======================================
+// MENU ELEMENTS
+// ======================================
 
-function showProductsPage() {
+const menuBtn =
+  document.getElementById(
+    "menuBtn"
+  );
 
-  productsPage.classList.remove(
+const menuDropdown =
+  document.getElementById(
+    "menuDropdown"
+  );
+
+// ======================================
+// MENU TOGGLE
+// ======================================
+
+menuBtn.addEventListener(
+  "click",
+  () => {
+
+    menuDropdown.classList.toggle(
+      "active"
+    );
+
+  }
+);
+
+// ======================================
+// CLOSE MENU WHEN CLICKING OUTSIDE
+// ======================================
+
+window.addEventListener(
+  "click",
+  (event) => {
+
+    if (
+
+      !event.target.closest(
+        ".nav-menu"
+      )
+
+    ) {
+
+      menuDropdown.classList.remove(
+        "active"
+      );
+
+    }
+
+  }
+);
+
+// ======================================
+// PAGE NAVIGATION FUNCTIONS
+// ======================================
+
+function hideAllPages() {
+
+  productsPage.classList.add(
     "hidden"
   );
 
@@ -50,83 +110,87 @@ function showProductsPage() {
 
 }
 
+// ======================================
+// SHOW PRODUCTS PAGE
+// ======================================
+
+function showProductsPage() {
+
+  hideAllPages();
+
+  productsPage.classList.remove(
+    "hidden"
+  );
+
+  closeMenu();
+
+}
+
+// ======================================
+// SHOW CHECKOUT PAGE
+// ======================================
 
 function showCheckoutPage() {
 
-  productsPage.classList.add(
-    "hidden"
-  );
+  if (cart.length === 0) {
+
+    alert(
+      "Please add products to cart."
+    );
+
+    return;
+
+  }
+
+  hideAllPages();
 
   checkoutPage.classList.remove(
     "hidden"
   );
 
-  supportPage.classList.add(
-    "hidden"
-  );
-
-  successPage.classList.add(
-    "hidden"
-  );
+  closeMenu();
 
 }
 
+// ======================================
+// SHOW SUPPORT PAGE
+// ======================================
+
 function showSupportPage() {
 
-  productsPage.classList.add(
-    "hidden"
-  );
-
-  checkoutPage.classList.add(
-    "hidden"
-  );
+  hideAllPages();
 
   supportPage.classList.remove(
     "hidden"
   );
 
-  successPage.classList.add(
-    "hidden"
-  );
+  closeMenu();
 
 }
+
+// ======================================
+// SHOW SUCCESS PAGE
+// ======================================
+
 function showSuccessPage() {
 
-  productsPage.classList.add(
-    "hidden"
-  );
-
-  checkoutPage.classList.add(
-    "hidden"
-  );
-
-  supportPage.classList.add(
-    "hidden"
-  );
+  hideAllPages();
 
   successPage.classList.remove(
     "hidden"
   );
 
+  closeMenu();
+
 }
+
+// ======================================
+// SHOW ORDERS PAGE
+// ======================================
 
 function showOrdersPage() {
 
-  productsPage.classList.add(
-    "hidden"
-  );
-
-  checkoutPage.classList.add(
-    "hidden"
-  );
-
-  supportPage.classList.add(
-    "hidden"
-  );
-
-  successPage.classList.add(
-    "hidden"
-  );
+  hideAllPages();
 
   ordersPage.classList.remove(
     "hidden"
@@ -134,25 +198,94 @@ function showOrdersPage() {
 
   renderOrders();
 
+  closeMenu();
+
 }
 
-// =====================================
-// EVENTS
-// =====================================
+// ======================================
+// CLOSE MENU
+// ======================================
+
+function closeMenu() {
+
+  menuDropdown.classList.remove(
+    "active"
+  );
+
+}
+
+// ======================================
+// NAVIGATION EVENTS
+// ======================================
+
+// HOME
 
 document
-  .getElementById("ordersNav")
+  .getElementById(
+    "homeNav"
+  )
+  .addEventListener(
+    "click",
+    showProductsPage
+  );
+
+// SUPPORT
+
+document
+  .getElementById(
+    "supportNav"
+  )
+  .addEventListener(
+    "click",
+    showSupportPage
+  );
+
+// ORDERS
+
+document
+  .getElementById(
+    "ordersNav"
+  )
   .addEventListener(
     "click",
     showOrdersPage
   );
 
+// CHECKOUT
+
 document
-  .getElementById("ordersBackBtn")
+  .getElementById(
+    "goToCheckout"
+  )
+  .addEventListener(
+    "click",
+    showCheckoutPage
+  );
+
+// BACK BUTTON
+
+document
+  .getElementById(
+    "backBtn"
+  )
   .addEventListener(
     "click",
     showProductsPage
   );
+
+// SUPPORT BACK
+
+document
+  .getElementById(
+    "supportBackBtn"
+  )
+  .addEventListener(
+    "click",
+    showProductsPage
+  );
+
+// SUCCESS BUTTON
+
 document
   .getElementById(
     "successHomeBtn"
@@ -162,57 +295,14 @@ document
     showProductsPage
   );
 
+// ORDERS BACK
+
 document
-  .getElementById("homeNav")
+  .getElementById(
+    "ordersBackBtn"
+  )
   .addEventListener(
     "click",
     showProductsPage
   );
-
-document
-  .getElementById("supportNav")
-  .addEventListener(
-    "click",
-    showSupportPage
-  );
-
-document
-  .getElementById("backBtn")
-  .addEventListener(
-    "click",
-    showProductsPage
-  );
-
-document
-  .getElementById("supportBackBtn")
-  .addEventListener(
-    "click",
-    showProductsPage
-  );
-
-document
-  .getElementById("goToCheckout")
-  .addEventListener(
-    "click",
-    () => {
-
-      if (cart.length === 0) {
-
-        alert(
-          "Please add products to cart."
-        );
-
-        return;
-
-      }
-
-      showCheckoutPage();
-
-    }
-  );
-// SUCCESS PAGE
-
-const successPage =
-  document.getElementById(
-    "successPage"
-  );
+```
