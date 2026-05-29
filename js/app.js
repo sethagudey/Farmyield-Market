@@ -1,4 +1,28 @@
 // ======================================
+// WEBSITE LOADER
+// ======================================
+
+window.addEventListener(
+  "load",
+  () => {
+
+    const loader =
+      document.getElementById(
+        "loader"
+      );
+
+    setTimeout(() => {
+
+      loader.classList.add(
+        "hidden"
+      );
+
+    }, 1000);
+
+  }
+);
+
+// ======================================
 // INITIALIZE APPLICATION
 // ======================================
 
@@ -43,7 +67,31 @@ if (orderBtn) {
 
   orderBtn.addEventListener(
     "click",
-    submitOrder
+    async () => {
+
+      // BUTTON LOADING STATE
+
+      orderBtn.innerText =
+        "Processing...";
+
+      orderBtn.classList.add(
+        "loading-btn"
+      );
+
+      // SUBMIT ORDER
+
+      await submitOrder();
+
+      // RESTORE BUTTON
+
+      orderBtn.innerText =
+        "Place Order";
+
+      orderBtn.classList.remove(
+        "loading-btn"
+      );
+
+    }
   );
 
 }
