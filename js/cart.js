@@ -1,47 +1,60 @@
-// =====================================
-// CART
-// =====================================
+```javascript id="3zwc5y"
+// ======================================
+// CART ARRAY
+// ======================================
 
 let cart = [];
 
-// =====================================
+// ======================================
 // ADD TO CART
-// =====================================
+// ======================================
 
 function addToCart(productId) {
 
+  // FIND PRODUCT
+
   const product =
     products.find(
-
       item => item.id === productId
+    );
 
+  // GET KG INPUT
+
+  const kgInput =
+    document.getElementById(
+      `kg-${productId}`
     );
 
   const kg =
     parseFloat(
-
-      document.getElementById(
-        `kg-${productId}`
-      ).value
-
+      kgInput.value
     );
 
-  if (kg <= 0) {
+  // VALIDATION
+
+  if (
+
+    isNaN(kg) ||
+    kg <= 0
+
+  ) {
 
     alert(
-      "Please enter valid quantity."
+      "Please enter a valid quantity."
     );
 
     return;
 
   }
 
+  // CHECK IF PRODUCT EXISTS
+
   const existingItem =
     cart.find(
-
       item => item.id === productId
-
     );
+
+  // UPDATE EXISTING ITEM
 
   if (existingItem) {
 
@@ -49,25 +62,36 @@ function addToCart(productId) {
 
   }
 
+  // ADD NEW ITEM
+
   else {
 
     cart.push({
 
-      ...product,
+      id: product.id,
 
-      kg
+      name: product.name,
+
+      pricePerKg:
+        product.pricePerKg,
+
+      image: product.image,
+
+      kg: kg
 
     });
 
   }
 
+  // UPDATE CART UI
+
   updateCart();
 
 }
 
-// =====================================
+// ======================================
 // UPDATE CART
-// =====================================
+// ======================================
 
 function updateCart() {
 
@@ -81,9 +105,13 @@ function updateCart() {
       "total"
     );
 
+  // CLEAR CART
+
   cartItems.innerHTML = "";
 
   let total = 0;
+
+  // EMPTY CART
 
   if (cart.length === 0) {
 
@@ -102,61 +130,89 @@ function updateCart() {
 
   }
 
-  cart.forEach((item, index) => {
+  // LOOP THROUGH ITEMS
 
-    const itemTotal =
-      item.pricePerKg * item.kg;
+  cart.forEach(
 
-    total += itemTotal;
+    (item, index) => {
 
-    const div =
-      document.createElement("div");
+      const itemTotal =
+        item.pricePerKg *
+        item.kg;
 
-    div.classList.add("cart-item");
+      total += itemTotal;
 
-    div.innerHTML = `
+      // CREATE ITEM DIV
 
-      <div>
+      const cartItem =
+        document.createElement(
+          "div"
+        );
 
-        <strong>
-          ${item.name}
-        </strong>
+      cartItem.classList.add(
+        "cart-item"
+      );
 
-        <p>
-          ${item.kg} Kg ×
-          GHS ${item.pricePerKg}
-        </p>
+      cartItem.innerHTML = `
 
-      </div>
+        <div>
 
-      <div class="cart-actions">
+          <strong>
+            ${item.name}
+          </strong>
 
-        <strong>
-          GHS ${itemTotal.toFixed(2)}
-        </strong>
+          <p>
 
-        <button
-          onclick="removeItem(${index})"
-        >
-          Remove
-        </button>
+            ${item.kg} Kg ×
+            GHS ${item.pricePerKg}
 
-      </div>
+          </p>
 
-    `;
+        </div>
 
-    cartItems.appendChild(div);
+        <div class="cart-actions">
 
-  });
+          <strong>
+
+            GHS ${itemTotal.toFixed(2)}
+
+          </strong>
+
+          <br />
+
+          <button
+            onclick="removeItem(${index})"
+          >
+
+            Remove
+
+          </button>
+
+        </div>
+
+      `;
+
+      // APPEND ITEM
+
+      cartItems.appendChild(
+        cartItem
+      );
+
+    }
+
+  );
+
+  // UPDATE TOTAL
 
   totalElement.innerText =
+
     `Total: GHS ${total.toFixed(2)}`;
 
 }
 
-// =====================================
+// ======================================
 // REMOVE ITEM
-// =====================================
+// ======================================
 
 function removeItem(index) {
 
@@ -165,3 +221,16 @@ function removeItem(index) {
   updateCart();
 
 }
+
+// ======================================
+// CLEAR CART
+// ======================================
+
+function clearCart() {
+
+  cart = [];
+
+  updateCart();
+
+}
+```
