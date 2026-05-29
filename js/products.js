@@ -22,7 +22,7 @@ const products = [
 },
   
 {
-  id: 1,
+  id: 2,
 
   name: "Tomatoes",
 
@@ -38,26 +38,39 @@ const products = [
     "In Stock"
 },
 
-  {
-    id: 3,
-    name: "Fresh Pepper",
-    pricePerKg: 20,
-    image: "images/pepper.png"
-  },
+{
+  id: 3,
 
-  {
-    id: 4,
-    name: "Lettuce",
-    pricePerKg: 15,
-    image: "images/lettuce.png"
-  },
+  name: "Tomatoes",
 
-  {
-    id: 5,
-    name: "Watermelon",
-    pricePerKg: 35,
-    image: "images/watermelon.png"
-  }
+  pricePerKg: 25,
+
+  image:
+    "images/lettuce.png",
+
+  description:
+    "Fresh organic tomatoes harvested directly from local farms in Ghana.",
+
+  stock:
+    "In Stock"
+},
+
+{
+  id: 4,
+
+  name: "Tomatoes",
+
+  pricePerKg: 25,
+
+  image:
+    "images/Beetroots.png",
+
+  description:
+    "Fresh organic tomatoes harvested directly from local farms in Ghana.",
+
+  stock:
+    "In Stock"
+}
 
 ];
 
