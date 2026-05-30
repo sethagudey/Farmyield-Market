@@ -42,47 +42,7 @@ const menuDropdown =
   );
 
 // ======================================
-// MENU TOGGLE
-// ======================================
-
-menuBtn.addEventListener(
-  "click",
-  () => {
-
-    menuDropdown.classList.toggle(
-      "active"
-    );
-
-  }
-);
-
-// ======================================
-// CLOSE MENU WHEN CLICKING OUTSIDE
-// ======================================
-
-window.addEventListener(
-  "click",
-  (event) => {
-
-    if (
-
-      !event.target.closest(
-        ".nav-menu"
-      )
-
-    ) {
-
-      menuDropdown.classList.remove(
-        "active"
-      );
-
-    }
-
-  }
-);
-
-// ======================================
-// PAGE NAVIGATION FUNCTIONS
+// HIDE ALL PAGES
 // ======================================
 
 function hideAllPages() {
@@ -110,7 +70,7 @@ function hideAllPages() {
 }
 
 // ======================================
-// SHOW PRODUCTS PAGE
+// SHOW HOME PAGE
 // ======================================
 
 function showProductsPage() {
@@ -126,7 +86,7 @@ function showProductsPage() {
 }
 
 // ======================================
-// SHOW CHECKOUT PAGE
+// SHOW CHECKOUT
 // ======================================
 
 function showCheckoutPage() {
@@ -134,7 +94,7 @@ function showCheckoutPage() {
   if (cart.length === 0) {
 
     alert(
-      "Please add products to cart."
+      "Your cart is empty."
     );
 
     return;
@@ -147,12 +107,14 @@ function showCheckoutPage() {
     "hidden"
   );
 
+  updateCart();
+
   closeMenu();
 
 }
 
 // ======================================
-// SHOW SUPPORT PAGE
+// SHOW SUPPORT
 // ======================================
 
 function showSupportPage() {
@@ -168,7 +130,7 @@ function showSupportPage() {
 }
 
 // ======================================
-// SHOW SUCCESS PAGE
+// SHOW SUCCESS
 // ======================================
 
 function showSuccessPage() {
@@ -184,7 +146,7 @@ function showSuccessPage() {
 }
 
 // ======================================
-// SHOW ORDERS PAGE
+// SHOW ORDERS
 // ======================================
 
 function showOrdersPage() {
@@ -195,7 +157,16 @@ function showOrdersPage() {
     "hidden"
   );
 
-  renderOrders();
+  if (
+
+    typeof renderOrders ===
+    "function"
+
+  ) {
+
+    renderOrders();
+
+  }
 
   closeMenu();
 
@@ -214,10 +185,46 @@ function closeMenu() {
 }
 
 // ======================================
-// NAVIGATION EVENTS
+// MENU TOGGLE
 // ======================================
 
-// HOME
+menuBtn.addEventListener(
+  "click",
+  () => {
+
+    menuDropdown.classList.toggle(
+      "active"
+    );
+
+  }
+);
+
+// ======================================
+// CLOSE MENU ON OUTSIDE CLICK
+// ======================================
+
+window.addEventListener(
+  "click",
+  (event) => {
+
+    if (
+
+      !event.target.closest(
+        ".nav-menu"
+      )
+
+    ) {
+
+      closeMenu();
+
+    }
+
+  }
+);
+
+// ======================================
+// NAVIGATION LINKS
+// ======================================
 
 document
   .getElementById(
@@ -228,7 +235,14 @@ document
     showProductsPage
   );
 
-// SUPPORT
+document
+  .getElementById(
+    "ordersNav"
+  )
+  .addEventListener(
+    "click",
+    showOrdersPage
+  );
 
 document
   .getElementById(
@@ -239,18 +253,9 @@ document
     showSupportPage
   );
 
-// ORDERS
-
-document
-  .getElementById(
-    "ordersNav"
-  )
-  .addEventListener(
-    "click",
-    showOrdersPage
-  );
-
-// CHECKOUT
+// ======================================
+// CHECKOUT BUTTON
+// ======================================
 
 document
   .getElementById(
@@ -261,7 +266,9 @@ document
     showCheckoutPage
   );
 
-// BACK BUTTON
+// ======================================
+// BACK BUTTONS
+// ======================================
 
 document
   .getElementById(
@@ -272,8 +279,6 @@ document
     showProductsPage
   );
 
-// SUPPORT BACK
-
 document
   .getElementById(
     "supportBackBtn"
@@ -283,19 +288,6 @@ document
     showProductsPage
   );
 
-// SUCCESS BUTTON
-
-document
-  .getElementById(
-    "successHomeBtn"
-  )
-  .addEventListener(
-    "click",
-    showProductsPage
-  );
-
-// ORDERS BACK
-
 document
   .getElementById(
     "ordersBackBtn"
@@ -303,4 +295,19 @@ document
   .addEventListener(
     "click",
     showProductsPage
+  );
+
+document
+  .getElementById(
+    "successHomeBtn"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      clearCart();
+
+      showProductsPage();
+
+    }
   );
