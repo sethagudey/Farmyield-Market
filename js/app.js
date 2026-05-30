@@ -1,3 +1,4 @@
+
 // ======================================
 // WEBSITE LOADER
 // ======================================
@@ -11,43 +12,15 @@ window.addEventListener(
         "loader"
       );
 
-    setTimeout(() => {
+    if (loader) {
 
-      loader.classList.add(
-        "hidden"
-      );
+      setTimeout(() => {
 
-    }, 1000);
+        loader.classList.add(
+          "hidden"
+        );
 
-  }
-);
-
-// ======================================
-// INITIALIZE APPLICATION
-// ======================================
-
-window.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    // LOAD PRODUCTS
-
-    displayProducts();
-
-    // LOAD CART
-
-    updateCart();
-
-    // LOAD ORDERS
-
-    if (
-
-      typeof renderOrders ===
-      "function"
-
-    ) {
-
-      renderOrders();
+      }, 1000);
 
     }
 
@@ -55,73 +28,7 @@ window.addEventListener(
 );
 
 // ======================================
-// ORDER BUTTON EVENT
-// ======================================
-
-const orderBtn =
-  document.getElementById(
-    "orderBtn"
-  );
-
-if (orderBtn) {
-
-  orderBtn.addEventListener(
-    "click",
-    async () => {
-
-      // BUTTON LOADING STATE
-
-      orderBtn.innerText =
-        "Processing...";
-
-      orderBtn.classList.add(
-        "loading-btn"
-      );
-
-      // SUBMIT ORDER
-
-      await submitOrder();
-
-      // RESTORE BUTTON
-
-      orderBtn.innerText =
-        "Place Order";
-
-      orderBtn.classList.remove(
-        "loading-btn"
-      );
-
-    }
-  );
-
-}
-
-// ======================================
-// CONTINUE SHOPPING
-// ======================================
-
-const successHomeBtn =
-  document.getElementById(
-    "successHomeBtn"
-  );
-
-if (successHomeBtn) {
-
-  successHomeBtn.addEventListener(
-    "click",
-    () => {
-
-      clearCart();
-
-      showProductsPage();
-
-    }
-  );
-
-}
-
-// ======================================
-// PRODUCT MODAL
+// PRODUCT MODAL ELEMENTS
 // ======================================
 
 const productModal =
@@ -154,25 +61,33 @@ const modalStock =
     "modalStock"
   );
 
-const closeModal =
+const closeModalBtn =
   document.getElementById(
     "closeModal"
   );
 
 // ======================================
-// OPEN MODAL
+// OPEN PRODUCT MODAL
 // ======================================
 
-function openProductModal(productId) {
-
-  // FIND PRODUCT
+function openProductModal(
+  productId
+) {
 
   const product =
+
     products.find(
-      item => item.id === productId
+
+      item =>
+        item.id === productId
+
     );
 
-  // UPDATE MODAL
+  if (!product) {
+
+    return;
+
+  }
 
   modalImage.src =
     product.image;
@@ -192,8 +107,6 @@ function openProductModal(productId) {
 
     product.stock;
 
-  // SHOW MODAL
-
   productModal.classList.remove(
     "hidden"
   );
@@ -201,19 +114,29 @@ function openProductModal(productId) {
 }
 
 // ======================================
-// CLOSE MODAL
+// CLOSE PRODUCT MODAL
 // ======================================
 
-closeModal.addEventListener(
-  "click",
-  () => {
+function closeProductModal() {
 
-    productModal.classList.add(
-      "hidden"
-    );
+  productModal.classList.add(
+    "hidden"
+  );
 
-  }
-);
+}
+
+// ======================================
+// CLOSE BUTTON
+// ======================================
+
+if (closeModalBtn) {
+
+  closeModalBtn.addEventListener(
+    "click",
+    closeProductModal
+  );
+
+}
 
 // ======================================
 // CLOSE ON OUTSIDE CLICK
@@ -230,12 +153,41 @@ window.addEventListener(
 
     ) {
 
-      productModal.classList.add(
-        "hidden"
-      );
+      closeProductModal();
 
     }
 
   }
 );
 
+// ======================================
+// INITIALIZE APP
+// ======================================
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    // LOAD PRODUCTS
+
+    displayProducts();
+
+    // UPDATE CART
+
+    updateCart();
+
+    // LOAD ORDERS
+
+    if (
+
+      typeof renderOrders ===
+      "function"
+
+    ) {
+
+      renderOrders();
+
+    }
+
+  }
+);
