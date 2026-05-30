@@ -3,45 +3,41 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
-  />
+  >
 
   <title>
-    Farmyield Marketplace
+    FarmFresh Marketplace
   </title>
-
-  <!-- CSS -->
 
   <link
     rel="stylesheet"
     href="css/style.css"
-  />
+  >
 
 </head>
 
 <body>
 
-<!-- ======================================
-     WEBSITE LOADER
-====================================== -->
+  <!-- ==========================
+       LOADER
+  =========================== -->
 
-<div id="loader">
+  <div id="loader">
 
-  <div class="spinner"></div>
+    <div class="spinner"></div>
 
-</div>
+  </div>
 
-  <!-- =====================================
-       HERO SECTION
-  ====================================== -->
+  <!-- ==========================
+       HEADER
+  =========================== -->
 
   <header class="hero">
-
-    <!-- TOP BAR -->
 
     <div class="top-bar">
 
@@ -50,34 +46,38 @@
       <div class="logo">
 
         <img
-          src="images/logo.jpeg"
-          alt="Farmyield Logo"
-        />
+          src="images/logo.png"
+          alt="FarmFresh Logo"
+        >
+
+        <span>
+          FarmFresh
+        </span>
 
       </div>
 
-      <!-- NAVIGATION MENU -->
+      <!-- NAVIGATION -->
 
       <div class="nav-menu">
 
-<button
-  class="menu-btn"
-  id="menuBtn"
->
+        <button
+          id="menuBtn"
+          class="menu-btn"
+        >
 
-  ☰
+          ☰
 
-  <span id="cartBadge">
+          <span id="cartBadge">
 
-    0
+            0
 
-  </span>
+          </span>
 
-</button>
+        </button>
 
         <div
-          class="menu-dropdown"
           id="menuDropdown"
+          class="menu-dropdown"
         >
 
           <button id="homeNav">
@@ -103,37 +103,38 @@
     <div class="hero-content">
 
       <h1>
+
         Fresh Farm Produce
+
       </h1>
 
       <p>
-        Fresh produce directly from local farmers
+
+        Fresh produce delivered
+        to your doorstep.
+
       </p>
 
     </div>
 
   </header>
 
-  <!-- =====================================
+  <!-- ==========================
        MAIN CONTAINER
-  ====================================== -->
+  =========================== -->
 
   <main class="container">
 
-    <!-- =====================================
+    <!-- ==========================
          PRODUCTS PAGE
-    ====================================== -->
+    =========================== -->
 
     <section id="productsPage">
 
-      <!-- PRODUCTS GRID -->
-
-      <section
-        class="products"
+      <div
         id="products"
-      ></section>
-
-      <!-- CHECKOUT BUTTON -->
+        class="products"
+      ></div>
 
       <div class="navigation">
 
@@ -147,9 +148,9 @@
 
     </section>
 
-    <!-- =====================================
+    <!-- ==========================
          CHECKOUT PAGE
-    ====================================== -->
+    =========================== -->
 
     <section
       id="checkoutPage"
@@ -159,58 +160,58 @@
       <div class="cart">
 
         <h2>
+
           Checkout
+
         </h2>
 
-        <!-- CART ITEMS -->
+        <div id="cartItems">
 
-        <div id="cartItems"></div>
-
-        <!-- TOTAL -->
+        </div>
 
         <h3 id="total">
-          Total: GHS 0
-        </h3>
 
-        <!-- CUSTOMER DETAILS -->
+          Total: GHS 0
+
+        </h3>
 
         <div class="checkout">
 
           <input
             type="text"
             id="customerName"
-            placeholder="Your Name"
-          />
+            placeholder="Full Name"
+          >
 
           <input
             type="text"
             id="customerPhone"
             placeholder="Phone Number"
-          />
+          >
 
           <input
             type="text"
             id="customerLocation"
             placeholder="Delivery Location"
-          />
+          >
 
         </div>
-
-        <!-- BUTTONS -->
 
         <div class="checkout-buttons">
 
           <button id="backBtn">
+
             Back
+
           </button>
 
           <button id="orderBtn">
+
             Place Order
+
           </button>
 
         </div>
-
-        <!-- MESSAGE -->
 
         <p id="message"></p>
 
@@ -218,9 +219,9 @@
 
     </section>
 
-    <!-- =====================================
+    <!-- ==========================
          SUPPORT PAGE
-    ====================================== -->
+    =========================== -->
 
     <section
       id="supportPage"
@@ -230,11 +231,15 @@
       <div class="support-card">
 
         <h2>
+
           Customer Support
+
         </h2>
 
         <p>
-          Need help with your order?
+
+          Need help with an order?
+
         </p>
 
         <div class="support-info">
@@ -244,7 +249,7 @@
           </h3>
 
           <p>
-            +233 24 123 4567
+            +233 XX XXX XXXX
           </p>
 
           <h3>
@@ -252,7 +257,7 @@
           </h3>
 
           <p>
-            +233 24 123 4567
+            +233 XX XXX XXXX
           </p>
 
           <h3>
@@ -263,27 +268,11 @@
             support@farmfresh.com
           </p>
 
-          <h3>
-            Delivery Hours
-          </h3>
-
-          <p>
-            Monday - Saturday
-            <br />
-            7:00 AM - 6:00 PM
-          </p>
-
-          <h3>
-            Location
-          </h3>
-
-          <p>
-            Accra, Ghana
-          </p>
-
         </div>
 
-        <button id="supportBackBtn">
+        <button
+          id="supportBackBtn"
+        >
 
           Back Home
 
@@ -293,9 +282,9 @@
 
     </section>
 
-    <!-- =====================================
+    <!-- ==========================
          SUCCESS PAGE
-    ====================================== -->
+    =========================== -->
 
     <section
       id="successPage"
@@ -312,19 +301,20 @@
 
         <h2>
 
-          Order Placed Successfully!
+          Order Placed Successfully
 
         </h2>
 
         <p>
 
-          Thank you for shopping with us.
-          <br />
-          Your fresh produce will be delivered soon.
+          Thank you for shopping
+          with FarmFresh.
 
         </p>
 
-        <button id="successHomeBtn">
+        <button
+          id="successHomeBtn"
+        >
 
           Continue Shopping
 
@@ -334,9 +324,9 @@
 
     </section>
 
-    <!-- =====================================
-         MY ORDERS PAGE
-    ====================================== -->
+    <!-- ==========================
+         ORDERS PAGE
+    =========================== -->
 
     <section
       id="ordersPage"
@@ -353,19 +343,17 @@
 
         <p class="orders-subtitle">
 
-          Your recent orders
+          Your recent purchases
 
         </p>
-
-        <!-- ORDERS LIST -->
 
         <div id="ordersList">
 
         </div>
 
-        <!-- BACK BUTTON -->
-
-        <button id="ordersBackBtn">
+        <button
+          id="ordersBackBtn"
+        >
 
           Back Home
 
@@ -377,82 +365,57 @@
 
   </main>
 
+  <!-- ==========================
+       PRODUCT MODAL
+  =========================== -->
 
-  <!-- =====================================
-       JAVASCRIPT FILES
-  ====================================== -->
+  <div
+    id="productModal"
+    class="modal hidden"
+  >
 
-<script src="js/products.js"></script>
+    <div class="modal-content">
 
-<script src="js/cart.js"></script>
+      <span
+        id="closeModal"
+        class="close-btn"
+      >
 
-<script src="js/api.js"></script>
+        &times;
 
-<script src="js/navigation.js"></script>
+      </span>
 
-<script src="js/app.js"></script>
-
-
-<!-- ======================================
-     PRODUCT MODAL
-====================================== -->
-
-<div
-  id="productModal"
-  class="modal hidden"
->
-
-  <!-- MODAL CONTENT -->
-
-  <div class="modal-content">
-
-    <!-- CLOSE BUTTON -->
-
-    <span
-      id="closeModal"
-      class="close-modal"
-    >
-
-      &times;
-
-    </span>
-
-    <!-- PRODUCT IMAGE -->
-
-    <img
-      id="modalImage"
-      src=""
-      alt=""
-    />
-
-    <!-- PRODUCT INFO -->
-
-    <div class="modal-info">
+      <img
+        id="modalImage"
+        src=""
+        alt=""
+      >
 
       <h2 id="modalTitle"></h2>
 
-      <p
-        id="modalPrice"
-        class="modal-price"
-      ></p>
+      <p id="modalPrice"></p>
 
-      <p
-        id="modalDescription"
-        class="modal-description"
-      ></p>
+      <p id="modalDescription"></p>
 
-      <p
-        id="modalStock"
-        class="modal-stock"
-      ></p>
+      <p id="modalStock"></p>
 
     </div>
 
   </div>
 
-</div>
-  
+  <!-- ==========================
+       JAVASCRIPT FILES
+  =========================== -->
 
+  <script src="js/products.js"></script>
+
+  <script src="js/cart.js"></script>
+
+  <script src="js/api.js"></script>
+
+  <script src="js/navigation.js"></script>
+
+  <script src="js/app.js"></script>
 
 </body>
 
