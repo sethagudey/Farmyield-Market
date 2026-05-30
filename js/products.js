@@ -1,82 +1,134 @@
-// =====================================
+// ======================================
 // PRODUCTS DATA
-// =====================================
+// ======================================
 
 const products = [
 
-{
-  id: 1,
+  {
+    id: 1,
+    name: "Tomatoes",
+    pricePerKg: 25,
+    image: "images/tomatoes.jpg",
+    description:
+      "Fresh red tomatoes harvested directly from local farms.",
+    stock: "In Stock"
+  },
 
-  name: "Tomatoes",
+  {
+    id: 2,
+    name: "Beetroot",
+    pricePerKg: 30,
+    image: "images/beetroot.jpg",
+    description:
+      "Organic beetroot rich in nutrients and antioxidants.",
+    stock: "In Stock"
+  },
 
-  pricePerKg: 25,
+  {
+    id: 3,
+    name: "Okro",
+    pricePerKg: 18,
+    image: "images/okro.jpg",
+    description:
+      "Fresh green okro perfect for soups and stews.",
+    stock: "In Stock"
+  },
 
-  image:
-    "images/tomatoes.png",
+  {
+    id: 4,
+    name: "Plantain",
+    pricePerKg: 15,
+    image: "images/plantain.jpg",
+    description:
+      "Fresh plantain suitable for boiling, frying and roasting.",
+    stock: "In Stock"
+  },
 
-  description:
-    "Fresh organic tomatoes harvested directly from local farms in Ghana.",
+  {
+    id: 5,
+    name: "Carrots",
+    pricePerKg: 22,
+    image: "images/carrots.jpg",
+    description:
+      "Crunchy carrots packed with vitamins and minerals.",
+    stock: "In Stock"
+  },
 
-  stock:
-    "In Stock"
-},
-  
-{
-  id: 2,
+  {
+    id: 6,
+    name: "Lettuce",
+    pricePerKg: 20,
+    image: "images/lettuce.jpg",
+    description:
+      "Fresh green lettuce ideal for salads and sandwiches.",
+    stock: "In Stock"
+  },
 
-  name: "Tomatoes",
+  {
+    id: 7,
+    name: "Avocado",
+    pricePerKg: 28,
+    image: "images/avocado.jpg",
+    description:
+      "Creamy avocados sourced from trusted local farmers.",
+    stock: "In Stock"
+  },
 
-  pricePerKg: 25,
+  {
+    id: 8,
+    name: "Garden Eggs",
+    pricePerKg: 20,
+    image: "images/garden-egg.jpg",
+    description:
+      "Fresh white and yellow garden eggs harvested daily.",
+    stock: "In Stock"
+  },
 
-  image:
-    "images/carrots.png",
+  {
+    id: 9,
+    name: "Fresh Pepper",
+    pricePerKg: 35,
+    image: "images/pepper.jpg",
+    description:
+      "Fresh hot pepper for cooking and seasoning.",
+    stock: "In Stock"
+  },
 
-  description:
-    "Fresh organic tomatoes harvested directly from local farms in Ghana.",
+  {
+    id: 10,
+    name: "Watermelon",
+    pricePerKg: 12,
+    image: "images/watermelon.jpg",
+    description:
+      "Sweet juicy watermelon freshly harvested.",
+    stock: "In Stock"
+  },
 
-  stock:
-    "In Stock"
-},
+  {
+    id: 11,
+    name: "Crate of Eggs",
+    pricePerKg: 45,
+    image: "images/eggs.jpg",
+    description:
+      "Fresh farm eggs supplied in standard crates.",
+    stock: "In Stock"
+  },
 
-{
-  id: 3,
-
-  name: "Tomatoes",
-
-  pricePerKg: 25,
-
-  image:
-    "images/lettuce.png",
-
-  description:
-    "Fresh organic tomatoes harvested directly from local farms in Ghana.",
-
-  stock:
-    "In Stock"
-},
-
-{
-  id: 4,
-
-  name: "Tomatoes",
-
-  pricePerKg: 25,
-
-  image:
-    "images/Beetroots.png",
-
-  description:
-    "Fresh organic tomatoes harvested directly from local farms in Ghana.",
-
-  stock:
-    "In Stock"
-}
+  {
+    id: 12,
+    name: "Groundnut Paste",
+    pricePerKg: 40,
+    image: "images/groundnut-paste.jpg",
+    description:
+      "Pure natural groundnut paste with no additives.",
+    stock: "In Stock"
+  }
 
 ];
 
-// =====================================
+// ======================================
 // DISPLAY PRODUCTS
-// =====================================
+// ======================================
 
 function displayProducts() {
 
@@ -87,28 +139,37 @@ function displayProducts() {
 
   productsContainer.innerHTML = "";
 
-  products.forEach((product) => {
+  products.forEach(product => {
 
     const card =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
-    card.classList.add("card");
+    card.classList.add(
+      "card"
+    );
 
     card.innerHTML = `
-    <img
-     src="${product.image}"
-     alt="${product.name}"
-     onclick="openProductModal(${product.id})"
-/>
 
-      />
+      <img
+        src="${product.image}"
+        alt="${product.name}"
+        onclick="openProductModal(${product.id})"
+      >
 
       <div class="card-content">
 
-        <h3>${product.name}</h3>
+        <h3>
+
+          ${product.name}
+
+        </h3>
 
         <p class="price">
-          GHS ${product.pricePerKg} / Kg
+
+          GHS ${product.pricePerKg}/Kg
+
         </p>
 
         <input
@@ -118,19 +179,23 @@ function displayProducts() {
           value="1"
           id="kg-${product.id}"
           class="kg-input"
-        />
+        >
 
         <button
           onclick="addToCart(${product.id})"
         >
+
           Add To Cart
+
         </button>
 
       </div>
 
     `;
 
-    productsContainer.appendChild(card);
+    productsContainer.appendChild(
+      card
+    );
 
   });
 
