@@ -68,7 +68,7 @@ const products = [
     id: 7,
     name: "Avocado",
     pricePerKg: 28,
-    image: "images/avocado.png",
+    image: "images/avocados.png",
     description:
       "Creamy avocados sourced from trusted local farmers.",
     stock: "In Stock"
@@ -78,7 +78,7 @@ const products = [
     id: 8,
     name: "Garden Eggs",
     pricePerKg: 20,
-    image: "images/garden-egg.png",
+    image: "images/gardenegg.png",
     description:
       "Fresh white and yellow garden eggs harvested daily.",
     stock: "In Stock"
@@ -118,7 +118,7 @@ const products = [
     id: 12,
     name: "Groundnut Paste",
     pricePerKg: 40,
-    image: "images/groundnutpaste.png",
+    image: "images/peanutpaste.png",
     description:
       "Pure natural groundnut paste with no additives.",
     stock: "In Stock"
