@@ -8,7 +8,7 @@ const products = [
     id: 1,
     name: "Tomatoes",
     pricePerKg: 25,
-    image: "images/tomatoes.jpg",
+    image: "images/tomatoes.png",
     description:
       "Fresh red tomatoes harvested directly from local farms.",
     stock: "In Stock"
@@ -18,7 +18,7 @@ const products = [
     id: 2,
     name: "Beetroot",
     pricePerKg: 30,
-    image: "images/beetroot.jpg",
+    image: "images/Beetroots.png",
     description:
       "Organic beetroot rich in nutrients and antioxidants.",
     stock: "In Stock"
@@ -28,7 +28,7 @@ const products = [
     id: 3,
     name: "Okro",
     pricePerKg: 18,
-    image: "images/okro.jpg",
+    image: "images/okro.png",
     description:
       "Fresh green okro perfect for soups and stews.",
     stock: "In Stock"
@@ -38,7 +38,7 @@ const products = [
     id: 4,
     name: "Plantain",
     pricePerKg: 15,
-    image: "images/plantain.jpg",
+    image: "images/plantain.png",
     description:
       "Fresh plantain suitable for boiling, frying and roasting.",
     stock: "In Stock"
@@ -48,7 +48,7 @@ const products = [
     id: 5,
     name: "Carrots",
     pricePerKg: 22,
-    image: "images/carrots.jpg",
+    image: "images/carrots.png",
     description:
       "Crunchy carrots packed with vitamins and minerals.",
     stock: "In Stock"
@@ -58,7 +58,7 @@ const products = [
     id: 6,
     name: "Lettuce",
     pricePerKg: 20,
-    image: "images/lettuce.jpg",
+    image: "images/lettuce.png",
     description:
       "Fresh green lettuce ideal for salads and sandwiches.",
     stock: "In Stock"
@@ -68,7 +68,7 @@ const products = [
     id: 7,
     name: "Avocado",
     pricePerKg: 28,
-    image: "images/avocado.jpg",
+    image: "images/avocado.png",
     description:
       "Creamy avocados sourced from trusted local farmers.",
     stock: "In Stock"
@@ -78,7 +78,7 @@ const products = [
     id: 8,
     name: "Garden Eggs",
     pricePerKg: 20,
-    image: "images/garden-egg.jpg",
+    image: "images/garden-egg.png",
     description:
       "Fresh white and yellow garden eggs harvested daily.",
     stock: "In Stock"
@@ -88,7 +88,7 @@ const products = [
     id: 9,
     name: "Fresh Pepper",
     pricePerKg: 35,
-    image: "images/pepper.jpg",
+    image: "images/pepper.png",
     description:
       "Fresh hot pepper for cooking and seasoning.",
     stock: "In Stock"
@@ -98,7 +98,7 @@ const products = [
     id: 10,
     name: "Watermelon",
     pricePerKg: 12,
-    image: "images/watermelon.jpg",
+    image: "images/watermelon.png",
     description:
       "Sweet juicy watermelon freshly harvested.",
     stock: "In Stock"
@@ -108,7 +108,7 @@ const products = [
     id: 11,
     name: "Crate of Eggs",
     pricePerKg: 45,
-    image: "images/eggs.jpg",
+    image: "images/eggs.png",
     description:
       "Fresh farm eggs supplied in standard crates.",
     stock: "In Stock"
@@ -118,7 +118,7 @@ const products = [
     id: 12,
     name: "Groundnut Paste",
     pricePerKg: 40,
-    image: "images/groundnut-paste.jpg",
+    image: "images/groundnutpaste.png",
     description:
       "Pure natural groundnut paste with no additives.",
     stock: "In Stock"
