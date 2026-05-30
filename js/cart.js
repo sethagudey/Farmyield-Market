@@ -1,9 +1,14 @@
-
 // ======================================
-// CART ARRAY
+// CART
 // ======================================
 
 let cart = [];
+
+// ======================================
+// DELIVERY FEE
+// ======================================
+
+const DELIVERY_FEE = 45;
 
 // ======================================
 // ADD TO CART
@@ -11,31 +16,31 @@ let cart = [];
 
 function addToCart(productId) {
 
-  // FIND PRODUCT
-
   const product =
+
     products.find(
-      item => item.id === productId
+
+      item =>
+        item.id === productId
+
     );
 
-  // GET KG INPUT
+  const quantityInput =
 
-  const kgInput =
     document.getElementById(
       `kg-${productId}`
     );
 
-  const kg =
-    parseFloat(
-      kgInput.value
-    );
+  const quantity =
 
-  // VALIDATION
+    parseFloat(
+      quantityInput.value
+    );
 
   if (
 
-    isNaN(kg) ||
-    kg <= 0
+    isNaN(quantity) ||
+    quantity <= 0
 
   ) {
 
@@ -47,22 +52,21 @@ function addToCart(productId) {
 
   }
 
-  // CHECK IF PRODUCT EXISTS
-
   const existingItem =
-    cart.find(
-      item => item.id === productId
-    );
 
-  // UPDATE EXISTING ITEM
+    cart.find(
+
+      item =>
+        item.id === productId
+
+    );
 
   if (existingItem) {
 
-    existingItem.kg += kg;
+    existingItem.quantity +=
+      quantity;
 
   }
-
-  // ADD NEW ITEM
 
   else {
 
@@ -75,151 +79,20 @@ function addToCart(productId) {
       pricePerKg:
         product.pricePerKg,
 
-      image: product.image,
+      quantity:
 
-      kg: kg
+        quantity
 
     });
 
   }
 
-  // UPDATE CART
-
   updateCart();
 
-  // SUCCESS FEEDBACK
-
-  showCartNotification(
+  showNotification(
 
     `${product.name} added to cart`
-
   );
-
-}
-
-// ======================================
-// UPDATE CART
-// ======================================
-
-function updateCart() {
-
-  const cartItems =
-    document.getElementById(
-      "cartItems"
-    );
-
-  const totalElement =
-    document.getElementById(
-      "total"
-    );
-
-  // CLEAR CART
-
-  cartItems.innerHTML = "";
-
-  let total = 0;
-
-  // EMPTY CART
-
-  if (cart.length === 0) {
-
-    cartItems.innerHTML = `
-
-      <p>
-        Your cart is empty.
-      </p>
-
-    `;
-
-    totalElement.innerText =
-      "Total: GHS 0";
-updateCartBadge();
-
-    return;
-
-  }
-
-  // LOOP THROUGH ITEMS
-
-  cart.forEach(
-
-    (item, index) => {
-
-      const itemTotal =
-        item.pricePerKg *
-        item.kg;
-
-      total += itemTotal;
-
-      // CREATE ITEM DIV
-
-      const cartItem =
-        document.createElement(
-          "div"
-        );
-
-      cartItem.classList.add(
-        "cart-item"
-      );
-
-      cartItem.innerHTML = `
-
-        <div>
-
-          <strong>
-            ${item.name}
-          </strong>
-
-          <p>
-
-            ${item.kg} Kg ×
-            GHS ${item.pricePerKg}
-
-          </p>
-
-        </div>
-
-        <div class="cart-actions">
-
-          <strong>
-
-            GHS ${itemTotal.toFixed(2)}
-
-          </strong>
-
-          <br />
-
-          <button
-            onclick="removeItem(${index})"
-          >
-
-            Remove
-
-          </button>
-
-        </div>
-
-      `;
-
-      // APPEND ITEM
-
-      cartItems.appendChild(
-        cartItem
-      );
-
-    }
-
-  );
-
-  // UPDATE TOTAL
-
-  totalElement.innerText =
-
-    `Total: GHS ${total.toFixed(2)}`;
-  
-// UPDATE BADGE
-
-updateCartBadge();
 
 }
 
@@ -248,71 +121,266 @@ function clearCart() {
 }
 
 // ======================================
-// UPDATE CART BADGE
+// UPDATE CART
+// ======================================
+
+function updateCart() {
+
+  const cartItems =
+
+    document.getElementById(
+      "cartItems"
+    );
+
+  const totalElement =
+
+    document.getElementById(
+      "total"
+    );
+
+  if (
+
+    !cartItems ||
+    !totalElement
+
+  ) {
+
+    return;
+
+  }
+
+  cartItems.innerHTML = "";
+
+  let subtotal = 0;
+
+  if (cart.length === 0) {
+
+    cartItems.innerHTML =
+
+      "<p>Your cart is empty.</p>";
+
+    totalElement.innerHTML =
+
+      "Total: GHS 0.00";
+
+    updateCartBadge();
+
+    return;
+
+  }
+
+  cart.forEach(
+
+    (item, index) => {
+
+      const itemTotal =
+
+        item.pricePerKg *
+        item.quantity;
+
+      subtotal += itemTotal;
+
+      const cartItem =
+
+        document.createElement(
+          "div"
+        );
+
+      cartItem.classList.add(
+        "cart-item"
+      );
+
+      cartItem.innerHTML = `
+
+        <div>
+
+          <strong>
+
+            ${item.name}
+
+          </strong>
+
+          <p>
+
+            ${item.quantity} Kg ×
+            GHS ${item.pricePerKg}
+
+          </p>
+
+        </div>
+
+        <div
+          class="cart-actions"
+        >
+
+          <strong>
+
+            GHS ${itemTotal.toFixed(2)}
+
+          </strong>
+
+          <br><br>
+
+          <button
+            onclick="removeItem(${index})"
+          >
+
+            Remove
+
+          </button>
+
+        </div>
+
+      `;
+
+      cartItems.appendChild(
+        cartItem
+      );
+
+    }
+
+  );
+
+  const finalTotal =
+
+    subtotal +
+    DELIVERY_FEE;
+
+  totalElement.innerHTML = `
+
+    <p>
+
+      Subtotal:
+      GHS ${subtotal.toFixed(2)}
+
+    </p>
+
+    <p>
+
+      Delivery Fee:
+      GHS ${DELIVERY_FEE.toFixed(2)}
+
+    </p>
+
+    <br>
+
+    <strong>
+
+      Total:
+      GHS ${finalTotal.toFixed(2)}
+
+    </strong>
+
+  `;
+
+  updateCartBadge();
+
+}
+
+// ======================================
+// CART BADGE
 // ======================================
 
 function updateCartBadge() {
 
-  const cartBadge =
+  const badge =
+
     document.getElementById(
       "cartBadge"
     );
 
-  // TOTAL ITEMS
+  if (!badge) {
 
-  const totalItems =
+    return;
+
+  }
+
+  const count =
 
     cart.reduce(
 
-      (sum, item) =>
+      (
+        total,
+        item
+      ) =>
 
-        sum + item.kg,
+        total +
+        item.quantity,
 
       0
 
     );
 
-  // UPDATE BADGE
-
-  cartBadge.innerText =
-
-    Math.floor(totalItems);
+  badge.innerText =
+    Math.floor(count);
 
 }
 
 // ======================================
-// CART NOTIFICATION
+// GET TOTAL
 // ======================================
 
-function showCartNotification(message) {
+function getCartTotal() {
 
-  // REMOVE OLD NOTIFICATION
+  const subtotal =
 
-  const existingNotification =
-    document.getElementById(
-      "cartNotification"
+    cart.reduce(
+
+      (
+        total,
+        item
+      ) =>
+
+        total +
+        (
+          item.pricePerKg *
+          item.quantity
+        ),
+
+      0
+
     );
 
-  if (existingNotification) {
+  return (
 
-    existingNotification.remove();
+    subtotal +
+    DELIVERY_FEE
+
+  );
+
+}
+
+// ======================================
+// NOTIFICATION
+// ======================================
+
+function showNotification(
+  message
+) {
+
+  const oldNotification =
+
+    document.getElementById(
+      "notification"
+    );
+
+  if (oldNotification) {
+
+    oldNotification.remove();
 
   }
 
-  // CREATE NOTIFICATION
-
   const notification =
+
     document.createElement(
       "div"
     );
 
   notification.id =
-    "cartNotification";
+    "notification";
 
   notification.innerText =
     message;
-
-  // STYLE
 
   notification.style.position =
     "fixed";
@@ -330,7 +398,7 @@ function showCartNotification(message) {
     "white";
 
   notification.style.padding =
-    "14px 20px";
+    "15px 20px";
 
   notification.style.borderRadius =
     "10px";
@@ -339,27 +407,22 @@ function showCartNotification(message) {
     "0 4px 10px rgba(0,0,0,0.15)";
 
   notification.style.zIndex =
-    "9999";
-
-  notification.style.fontSize =
-    "0.95rem";
-
-  notification.style.animation =
-    "fadeIn 0.3s ease";
-
-  // ADD TO BODY
+    "99999";
 
   document.body.appendChild(
     notification
   );
 
-  // REMOVE AFTER 3 SECONDS
+  setTimeout(
 
-  setTimeout(() => {
+    () => {
 
-    notification.remove();
+      notification.remove();
 
-  }, 3000);
+    },
+
+    3000
+
+  );
 
 }
-
