@@ -1,39 +1,55 @@
-// =====================================
-// GOOGLE SCRIPT URL
-// =====================================
 
-const scriptURL =
+// ======================================
+// GOOGLE SHEETS WEB APP URL
+// ======================================
+
+const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxbHjxZ9Hb-hyNZMNMih1ENy878FsPKe1Ug8JIsBcyUFTdf5sVI-8RwBlvzpkxUWgOIKw/exec";
 
-// =====================================
+// ======================================
 // SUBMIT ORDER
-// =====================================
+// ======================================
 
 async function submitOrder() {
 
-  const name =
-    document.getElementById(
-      "customerName"
-    ).value;
+  // CUSTOMER DETAILS
 
-  const phone =
-    document.getElementById(
-      "customerPhone"
-    ).value;
+  const customerName =
 
-  const location =
-    document.getElementById(
-      "customerLocation"
-    ).value;
+    document
+      .getElementById(
+        "customerName"
+      )
+      .value
+      .trim();
+
+  const customerPhone =
+
+    document
+      .getElementById(
+        "customerPhone"
+      )
+      .value
+      .trim();
+
+  const customerLocation =
+
+    document
+      .getElementById(
+        "customerLocation"
+      )
+      .value
+      .trim();
 
   // VALIDATION
 
   if (
 
-    !name ||
-    !phone ||
-    !location ||
-    cart.length === 0
+    customerName === "" ||
+
+    customerPhone === "" ||
+
+    customerLocation === ""
 
   ) {
 
@@ -45,221 +61,282 @@ async function submitOrder() {
 
   }
 
-  // ITEMS
-
-  const items =
-    cart.map(item =>
-
-      `${item.name}
-      (${item.kg}Kg)`
-
-    ).join(", ");
-
-// ======================================
-// TOTAL
-// ======================================
-
-const subtotal =
-
-  cart.reduce(
-
-    (sum, item) =>
-
-      sum +
-      (
-        item.pricePerKg *
-        item.kg
-      ),
-
-    0
-
-  );
-
-// DELIVERY FEE
-
-const deliveryFee = 45;
-
-// FINAL TOTAL
-
-const total =
-
-  subtotal + deliveryFee;
-
-  // ORDER DATA
-
-  const orderData = {
-
-    name,
-    phone,
-    location,
-    items,
-    total
-
-  };
-
-  try {
-
-    await fetch(scriptURL, {
-
-      method: "POST",
-
-      body: JSON.stringify(orderData)
-
-    });
-
-    document.getElementById(
-      "message"
-    ).innerText =
-      "Order placed successfully!";
-
-    // RESET
-
-    cart = [];
-
-    updateCart();
-
-    document.getElementById(
-      "customerName"
-    ).value = "";
-
-    document.getElementById(
-      "customerPhone"
-    ).value = "";
-
-    document.getElementById(
-      "customerLocation"
-    ).value = "";
-saveOrderLocally(orderData);
-   showSuccessPage();
-
-  }
-
-  catch (error) {
+  if (cart.length === 0) {
 
     alert(
-      "Failed to submit order."
+      "Your cart is empty."
     );
-
-  }
-
-}
-
-// =====================================
-// SAVE ORDER LOCALLY
-// =====================================
-
-function saveOrderLocally(orderData) {
-
-  let orders =
-    JSON.parse(
-
-      localStorage.getItem(
-        "farmfreshOrders"
-      )
-
-    ) || [];
-
-  orders.unshift(orderData);
-
-  localStorage.setItem(
-
-    "farmfreshOrders",
-
-    JSON.stringify(orders)
-
-  );
-
-}
-
-// =====================================
-// RENDER ORDERS
-// =====================================
-
-function renderOrders() {
-
-  const ordersList =
-    document.getElementById(
-      "ordersList"
-    );
-
-  const orders =
-    JSON.parse(
-
-      localStorage.getItem(
-        "farmfreshOrders"
-      )
-
-    ) || [];
-
-  // EMPTY
-
-  if (orders.length === 0) {
-
-    ordersList.innerHTML = `
-
-      <div class="empty-orders">
-
-        No orders yet.
-
-      </div>
-
-    `;
 
     return;
 
   }
 
-  // DISPLAY ORDERS
+  // CALCULATE TOTAL
+
+  const total =
+    getCartTotal();
+
+  // ORDER OBJECT
+
+  const order = {
+
+    orderId:
+
+      "ORD-" +
+
+      Date.now(),
+
+    date:
+
+      new Date()
+        .toLocaleString(),
+
+    customerName,
+
+    customerPhone,
+
+    customerLocation,
+
+    products:
+
+      cart.map(item =>
+
+        `${item.name} (${item.quantity} Kg)`
+
+      ).join(", "),
+
+    total
+
+  };
+
+  // SAVE TO LOCAL STORAGE
+
+  saveOrder(order);
+
+  // SEND TO GOOGLE SHEETS
+
+  try {
+
+    await fetch(
+      SCRIPT_URL,
+      {
+
+        method: "POST",
+
+        mode: "no-cors",
+
+        headers: {
+
+          "Content-Type":
+            "application/json"
+
+        },
+
+        body:
+
+          JSON.stringify(
+            order
+          )
+
+      }
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      error
+    );
+
+  }
+
+  // CLEAR FORM
+
+  document.getElementById(
+    "customerName"
+  ).value = "";
+
+  document.getElementById(
+    "customerPhone"
+  ).value = "";
+
+  document.getElementById(
+    "customerLocation"
+  ).value = "";
+
+  // SUCCESS PAGE
+
+  showSuccessPage();
+
+}
+
+// ======================================
+// SAVE ORDER
+// ======================================
+
+function saveOrder(order) {
+
+  const orders =
+
+    JSON.parse(
+
+      localStorage.getItem(
+        "orders"
+      )
+
+    ) || [];
+
+  orders.unshift(
+    order
+  );
+
+  localStorage.setItem(
+
+    "orders",
+
+    JSON.stringify(
+      orders
+    )
+
+  );
+
+}
+
+// ======================================
+// RENDER ORDERS
+// ======================================
+
+function renderOrders() {
+
+  const ordersList =
+
+    document.getElementById(
+      "ordersList"
+    );
+
+  if (!ordersList) {
+
+    return;
+
+  }
+
+  const orders =
+
+    JSON.parse(
+
+      localStorage.getItem(
+        "orders"
+      )
+
+    ) || [];
 
   ordersList.innerHTML = "";
 
-  orders.forEach((order) => {
+  if (
 
-    const div =
-      document.createElement("div");
+    orders.length === 0
 
-    div.classList.add("order-item");
+  ) {
 
-    div.innerHTML = `
+    ordersList.innerHTML =
 
-      <h3>
+      "<p>No orders found.</p>";
 
-        GHS ${order.total}
+    return;
 
-      </h3>
+  }
 
-      <p>
+  orders.forEach(
 
-        <strong>Name:</strong>
-        ${order.name}
+    order => {
 
-      </p>
+      const orderCard =
 
-      <p>
+        document.createElement(
+          "div"
+        );
 
-        <strong>Phone:</strong>
-        ${order.phone}
+      orderCard.classList.add(
+        "order-item"
+      );
 
-      </p>
+      orderCard.innerHTML = `
 
-      <p>
+        <h3>
 
-        <strong>Location:</strong>
-        ${order.location}
+          ${order.orderId}
 
-      </p>
+        </h3>
 
-      <p>
+        <p>
 
-        <strong>Items:</strong>
-        ${order.items}
+          <strong>
+            Date:
+          </strong>
 
-      </p>
+          ${order.date}
 
-    `;
+        </p>
 
-    ordersList.appendChild(div);
+        <p>
 
-  });
+          <strong>
+            Name:
+          </strong>
+
+          ${order.customerName}
+
+        </p>
+
+        <p>
+
+          <strong>
+            Phone:
+          </strong>
+
+          ${order.customerPhone}
+
+        </p>
+
+        <p>
+
+          <strong>
+            Location:
+          </strong>
+
+          ${order.customerLocation}
+
+        </p>
+
+        <p>
+
+          <strong>
+            Items:
+          </strong>
+
+          ${order.products}
+
+        </p>
+
+        <p>
+
+          <strong>
+            Total:
+          </strong>
+
+          GHS ${order.total.toFixed(2)}
+
+        </p>
+
+      `;
+
+      ordersList.appendChild(
+        orderCard
+      );
+
+    }
+
+  );
 
 }
